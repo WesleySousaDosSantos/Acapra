@@ -164,6 +164,20 @@ nav a {
     color: white;
 }
 
+.quem-somos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quem-somos img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 485px;
+}
+
 .about-image {
     background-image: url('gato.png');
     background-size: cover;
@@ -175,9 +189,23 @@ nav a {
 }
 
 .dogs-image {
-    height: 200px;
+    height: 250px;
     border-radius: 100% 100% 0 0;
     background-color: var(--purple-primary);
+    margin-top: 51px;
+}
+
+.container-agora {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 90vh;
+}
+
+.animal {
+    position: relative;
+    width: 100%;
+    bottom: 75px;
 }
 
 .donation {
@@ -195,15 +223,20 @@ nav a {
 }
 
 .testimonial-card {
-    min-width: 250px;
-    flex: 0 0 auto;
+    min-width: 332px;
+    /* flex: 0 0 auto;  aqui ele vai deixar 2 quadros, estou na dúvida se uso ou não descomenta para testa*/
+}
+
+.adoteAnimal {
+    width: 100%;
+    height: 300px;
 }
 
 .slider-arrow {
     background: var(--purple-primary);
     color: white;
     border: none;
-    width: 40px;
+    width: 90px;
     height: 40px;
     border-radius: 50%;
     display: flex;
@@ -215,6 +248,10 @@ nav a {
 
 footer {
     background-color: var(--purple-primary);
+}
+
+hr {
+    border-color: white;
 }
 
 .social-icon {

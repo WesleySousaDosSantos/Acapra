@@ -133,7 +133,7 @@
 
     <section class="about py-5">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center quem-somos">
                 <div class="col-lg-5 mb-4 mb-lg-0 text-center">
                     <div class="about-image mx-auto"></div>
                 </div>
@@ -149,15 +149,18 @@
                         Acapra - Transformando vidas por décadas.
                     </p>
                 </div>
+                <img src="pattern.png" alt="Acapra">
             </div>
         </div>
     </section>
 
-    <section class="bg-light pt-5 text-center">
+    <section class="bg-light pt-5 text-center container-agora">
         <div class="container">
             <h2 class="display-5 fw-bold mb-4">O que está esperando?</h2>
             <a href="#" class="btn btn-purple btn-lg mb-5">Adotar agora</a>
-            <div class="dogs-image"></div>
+            <div class="dogs-image">
+                <img src="animaiss.png" alt="Acapra" class="animal">
+            </div>
         </div>
     </section>
 
@@ -167,8 +170,72 @@
             <a href="#" class="btn btn-outline-light btn-lg">Quero doar</a>
         </div>
     </section>
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-5">Veja nossas experiências compartilhadas aqui na Acapra</h2>
 
+            <div class="position-relative">
+                <div class="d-flex align-items-center">
+                    <button class="slider-arrow prev me-3">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
 
+                    <div class="testimonial-slider d-flex overflow-auto">
+                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
+                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
+                                alt="Cachorro adotado" width="80" height="80">
+                            <h3 class="fs-5 fw-bold mb-2">Felipe Adams</h3>
+                            <p class="text-muted mb-3">Meu cachorro é adorável e alegre para onde quer que eu o leve.
+                            </p>
+                        </div>
+
+                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
+                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
+                                alt="Cachorro adotado" width="80" height="80">
+                            <h3 class="fs-5 fw-bold mb-2">João Santos</h3>
+                            <p class="text-muted mb-3">Adotar meu companheiro de quatro patas foi a melhor decisão para
+                                mim.</p>
+                        </div>
+
+                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
+                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
+                                alt="Cachorro adotado" width="80" height="80">
+                            <h3 class="fs-5 fw-bold mb-2">Ana Pereira</h3>
+                            <p class="text-muted mb-3">Meu cachorro me acompanha a um verdadeiro membro da família
+                                agora.</p>
+                        </div>
+
+                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
+                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
+                                alt="Cachorro adotado" width="80" height="80">
+                            <h3 class="fs-5 fw-bold mb-2">Ana Pereira</h3>
+                            <p class="text-muted mb-3">Meu cachorro me acompanha a um verdadeiro membro da família
+                                agora.</p>
+                        </div>
+
+                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
+                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
+                                alt="Cachorro adotado" width="80" height="80">
+                            <h3 class="fs-5 fw-bold mb-2">Ana Pereira</h3>
+                            <p class="text-muted mb-3">Meu cachorro me acompanha a um verdadeiro membro da família
+                                agora.</p>
+                        </div>
+
+                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
+                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
+                                alt="Cachorro adotado" width="80" height="80">
+                            <h3 class="fs-5 fw-bold mb-2">Pedro Costa</h3>
+                            <p class="text-muted mb-3">Adotar me mostrou o que é experiência incrível. Ele me ama, eu o
+                                amo.</p>
+                        </div>
+                    </div>
+
+                    <button class="slider-arrow next ms-3">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="py-5">
@@ -197,7 +264,28 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.testimonial-slider');
+            const prevBtn = document.querySelector('.slider-arrow.prev');
+            const nextBtn = document.querySelector('.slider-arrow.next');
+            const cardWidth = 200;
 
+            prevBtn.addEventListener('click', function () {
+                slider.scrollBy({
+                    left: -cardWidth,
+                    behavior: 'smooth'
+                });
+            });
+
+            nextBtn.addEventListener('click', function () {
+                slider.scrollBy({
+                    left: cardWidth,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
