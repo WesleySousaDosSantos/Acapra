@@ -237,6 +237,178 @@
             </div>
         </div>
     </section>
+    <section class="contact-header">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3">Entre em Contato</h1>
+            <p class="lead mb-0">Estamos aqui para ajudar você e nossos amigos de quatro patas</p>
+        </div>
+    </section>
+
+    <div class="contact-container">
+        <div class="paw-decoration paw-1">
+            <i class="fas fa-paw fa-5x"></i>
+        </div>
+        <div class="paw-decoration paw-2">
+            <i class="fas fa-paw fa-5x"></i>
+        </div>
+
+        <div class="container">
+            <div class="contact-form-container">
+                <div class="row g-0">
+                    <div class="col-lg-4">
+                        <div class="contact-info">
+                            <h3>Informações de Contato</h3>
+                            
+                            <div class="contact-info-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <div class="content">
+                                    <h4>Telefone</h4>
+                                    <p>(11) 9876-5432<br>(11) 1234-5678</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="content">
+                                    <h4>Email</h4>
+                                    <p>contato@acapra.org<br>adocao@acapra.org</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="fas fa-clock"></i>
+                                <div class="content">
+                                    <h4>Horário de Funcionamento</h4>
+                                    <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 14h</p>
+                                </div>
+                            </div>
+                            
+                            <div class="social-contact">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <h3>Envie sua Mensagem</h3>
+                            
+                            <form id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Seu nome" required>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="phone" placeholder="(00) 00000-0000">
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="subject" class="form-label">Assunto</label>
+                                        <select class="form-select" id="subject" required>
+                                            <option value="" selected disabled>Selecione um assunto</option>
+                                            <option value="adocao">Adoção de Animal</option>
+                                            <option value="doacao">Doação</option>
+                                            <option value="voluntario">Voluntariado</option>
+                                            <option value="resgate">Resgate de Animal</option>
+                                            <option value="outro">Outro Assunto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="message" class="form-label">Mensagem</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="Digite sua mensagem aqui..." required></textarea>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-submit">
+                                        Enviar Mensagem <i class="fas fa-paper-plane ms-2"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold text-white">Perguntas Frequentes</h2>
+            
+            <div class="row justify-content-center container-pergunta-fq">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item mb-3 border rounded">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Como funciona o processo de adoção?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    O processo de adoção começa com uma visita ao nosso abrigo, onde você pode conhecer os animais disponíveis. Após escolher seu novo amigo, realizamos uma entrevista e visita à sua residência para garantir um ambiente adequado. Aprovado, você assina um termo de adoção responsável e leva seu novo companheiro para casa.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 border rounded">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Quais são os requisitos para adotar um animal?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Para adotar, você precisa ser maior de 18 anos, apresentar documento de identidade e comprovante de residência. Também avaliamos se o ambiente é adequado para o animal e se toda a família está de acordo com a adoção. Nosso objetivo é garantir que o animal tenha um lar amoroso e seguro.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 border rounded">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Como posso ajudar se não posso adotar?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Existem várias formas de ajudar! Você pode fazer doações financeiras, doar ração, medicamentos ou itens de limpeza. Também pode se tornar voluntário, ajudando nos cuidados com os animais, eventos de adoção ou divulgação nas redes sociais. Cada contribuição faz diferença na vida dos nossos animais.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border rounded">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Os animais são castrados e vacinados?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sim! Todos os nossos animais são entregues castrados, vacinados e vermifugados. Também realizamos exames para garantir que estão saudáveis antes da adoção. Esse cuidado é essencial para o bem-estar do animal e tranquilidade do adotante.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="py-5">
         <div class="container">
