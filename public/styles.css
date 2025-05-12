@@ -403,7 +403,7 @@ hr {
     color: white;
 }
 
-.container-pergunta-fq img{
+.container-pergunta-fq img {
     position: absolute;
     left: 0;
     top: 0;
@@ -453,6 +453,204 @@ hr {
     bottom: 10%;
     right: 5%;
     transform: rotate(-15deg);
+}
+
+.bottom-dog img {
+    max-width: 474px !important;
+}
+
+.adoption-header {
+    background-color: var(--purple-primary);
+    padding: 15px 0;
+}
+
+.adoption-header .logo-placeholder {
+    color: white;
+    font-size: 24px;
+}
+
+.adoption-header nav ul li a {
+    color: white;
+}
+
+.adoption-content {
+    padding-top: 60px;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.filter-btn.active {
+    background-color: var(--purple-primary);
+    color: white;
+    border: 1px solid var(--purple-primary);
+}
+
+.filter-btn:not(.active) {
+    background-color: white;
+    color: var(--purple-primary);
+    border: 1px solid #dee2e6;
+}
+
+.filter-btn:hover:not(.active) {
+    border-color: var(--purple-primary);
+}
+
+.filter-btn i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.adoption-message {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.adoption-message i {
+    background-color: black;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.adoption-message a {
+    color: var(--purple-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pet-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.pet-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pet-info {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pet-name {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.pet-gender {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.pet-gender i {
+    margin-right: 5px;
+}
+
+.pet-actions {
+    padding: 0 15px 15px;
+}
+
+.btn-adopt {
+    background-color: var(--purple-primary);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-adopt i {
+    margin-right: 8px;
+}
+
+.btn-adopt:hover {
+    background-color: var(--purple-dark);
+    color: white;
+}
+
+.btn-info {
+    background-color: white;
+    color: var(--purple-primary);
+    border: 1px solid var(--purple-primary);
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-info i {
+    margin-right: 8px;
+}
+
+.btn-info:hover {
+    background-color: #f8f4ff;
+}
+
+.bottom-dog {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.bottom-dog img {
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+@media (max-width: 767.98px) {
+    .pet-card {
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media (max-width: 991.98px) {
