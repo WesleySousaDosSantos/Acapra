@@ -645,6 +645,119 @@ hr {
     margin: 0 auto;
 }
 
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--purple-light);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="10" fill="rgba(106, 61, 179, 0.05)"/></svg>');
+    background-size: 100px;
+    background-repeat: repeat;
+}
+
+.login-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-image {
+    background-image: url('logo-acapra-reto.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+}
+
+.login-form {
+    padding: 40px;
+}
+
+.form-control:focus {
+    border-color: var(--purple-primary);
+    box-shadow: 0 0 0 0.25rem rgba(106, 61, 179, 0.25);
+}
+
+.login-footer {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.login-divider span {
+    padding: 0 10px;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: opacity 0.3s;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.google {
+    background-color: #db4437;
+}
+
+.paw-decoration {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.paw-1 {
+    top: 10%;
+    left: 5%;
+    transform: rotate(20deg);
+}
+
+.paw-2 {
+    bottom: 10%;
+    right: 5%;
+    transform: rotate(-15deg);
+}
+
+@media (max-width: 767.98px) {
+    .login-image {
+        min-height: 200px;
+    }
+}
+
 @media (max-width: 767.98px) {
     .pet-card {
         max-width: 320px;
