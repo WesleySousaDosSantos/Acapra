@@ -22,3 +22,7 @@ Route::get('/formulario', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/dashboard/contato', function () {
+    return view('dashboard-contato');
+});

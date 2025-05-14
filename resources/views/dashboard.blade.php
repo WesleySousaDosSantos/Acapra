@@ -25,7 +25,7 @@
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="#">
+                <a href="`{{ Route('contato') }}">
                     <i class="fa-solid fa-address-book"></i>
                     <span>Contato</span>
                 </a>
