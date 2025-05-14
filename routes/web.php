@@ -18,3 +18,7 @@ Route::get('/login', function () {
 Route::get('/formulario', function () {
     return view('formulario');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
