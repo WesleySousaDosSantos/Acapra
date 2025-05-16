@@ -18,3 +18,15 @@ Route::get('/login', function () {
 Route::get('/formulario', function () {
     return view('formulario');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/dashboard/contato', function () {
+    return view('dashboard-contato');
+});
+
+Route::get('/dashboard/formulario', function () {
+    return view('dashboard-form');
+});
