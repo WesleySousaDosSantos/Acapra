@@ -2,15 +2,16 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard Administrativo - ACAPRA</title>
+    <link rel="stylesheet" href="/dashboard.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <button id="toggleSidebar">
-        <i class="fas fa-bars"></i>
-    </button>
 
     <div>
         <div id="sidebar">
@@ -19,7 +20,6 @@
                     <i class="fas fa-paw"></i> <span>ACAPRA</span>
                 </div>
             </div>
-
             <div>
                 <a href="#">
                     <i class="fas fa-tachometer-alt"></i>
@@ -147,7 +147,7 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td><img src="adoteee.png" alt="Luna"></td>
+                                        <td><img src="adoteee.png" alt="Luna" /></td>
                                         <td>Luna</td>
                                         <td>Cachorro</td>
                                         <td>Labrador</td>
@@ -162,7 +162,7 @@
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td><img src="adoteee.png" alt="Cooper"></td>
+                                        <td><img src="adoteee.png" alt="Cooper" /></td>
                                         <td>Cooper</td>
                                         <td>Cachorro</td>
                                         <td>Golden Retriever</td>
@@ -177,7 +177,7 @@
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td><img src="adoteee.png" alt="Mia"></td>
+                                        <td><img src="adoteee.png" alt="Mia" /></td>
                                         <td>Mia</td>
                                         <td>Gato</td>
                                         <td>Siamês</td>
@@ -192,7 +192,7 @@
                                     </tr>
                                     <tr>
                                         <td>4</td>
-                                        <td><img src="adoteee.png" alt="Max"></td>
+                                        <td><img src="adoteee.png" alt="Max" /></td>
                                         <td>Max</td>
                                         <td>Cachorro</td>
                                         <td>Pinscher</td>
@@ -207,7 +207,7 @@
                                     </tr>
                                     <tr>
                                         <td>5</td>
-                                        <td><img src="adoteee.png" alt="Bella"></td>
+                                        <td><img src="adoteee.png" alt="Bella" /></td>
                                         <td>Bella</td>
                                         <td>Cachorro</td>
                                         <td>Poodle</td>
@@ -238,9 +238,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</body>
 
-</html>
+  <script>
+document.getElementById('toggleSidebar').addEventListener('click', function ()) {
+  document.getElementById('sidebar').classList.toggle('collapsed');
+  document.body.classList.toggle('sidebar-collapsed');
+  </script>
