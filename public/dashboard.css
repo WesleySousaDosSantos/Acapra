@@ -187,7 +187,7 @@ body > div > div:last-child > div:nth-child(2) > div {
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     cursor: default;
-    transition: transform 0.2s;
+    transition: transform 0.3s;
 }
 
 body > div > div:last-child > div:nth-child(2) > div:hover {
