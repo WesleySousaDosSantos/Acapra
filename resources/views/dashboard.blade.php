@@ -73,44 +73,44 @@
                 </div>
             </div>
 
-            <div>
-                <div>
-                    <div>
+             <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon purple">
                         <i class="fas fa-dog"></i>
                     </div>
-                    <div>
-                        <div>24</div>
-                        <div>Animais para Adoção</div>
+                    <div class="stat-info">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">Animais para Adoção</div>
                     </div>
                 </div>
-
-                <div>
-                    <div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon blue">
                         <i class="fas fa-file-alt"></i>
                     </div>
-                    <div>
-                        <div>12</div>
-                        <div>Formulários Pendentes</div>
+                    <div class="stat-info">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Formulários Pendentes</div>
                     </div>
                 </div>
-
-                <div>
-                    <div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon green">
                         <i class="fas fa-home"></i>
                     </div>
-                    <div>
-                        <div>156</div>
-                        <div>Adoções Realizadas</div>
+                    <div class="stat-info">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Adoções Realizadas</div>
                     </div>
                 </div>
-
-                <div>
-                    <div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon orange">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <div>
-                        <div>8</div>
-                        <div>Novas Mensagens</div>
+                    <div class="stat-info">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Novas Mensagens</div>
                     </div>
                 </div>
             </div>
@@ -242,7 +242,7 @@
     </div>
 
   <script>
-document.getElementById('toggleSidebar').addEventListener('click', function ()) {
-  document.getElementById('sidebar').classList.toggle('collapsed');
-  document.body.classList.toggle('sidebar-collapsed');
+    document.getElementById('toggleSidebar').addEventListener('click', function ()) {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    document.body.classList.toggle('sidebar-collapsed');
   </script>
