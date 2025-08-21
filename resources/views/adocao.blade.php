@@ -24,10 +24,10 @@
                 </div>
                 <nav>
                     <ul class="d-flex list-unstyled mb-0 gap-4 align-items-center">
-                        <li><a href="#" class="text-decoration-none">Home</a></li>
+                        <li><a href={{ Route('index') }} class="text-decoration-none">Home</a></li>
                         <li><a href="#" class="text-decoration-none">Sobre</a></li>
                         <li><a href="#" class="text-decoration-none">Contato</a></li>
-                        <li><a href="#" class="btn btn-purple">Adotar</a></li>
+                        <li><a href={{ Route('adocao') }} class="btn btn-purple">Adotar</a></li>
                     </ul>
                 </nav>
             </div>
