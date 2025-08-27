@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnimaisController;
+use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\DuvidasController;
 use App\Http\Controllers\Admin\FormulariosController;
@@ -10,15 +11,25 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ControllerHome::class, 'index'])->name('index');
-
 Route::get('/adocao', [ControllerHome::class, 'adocao'])->name('adocao');
 
-Route::get('/login', function () {
-    return view('login');
-});
 
-Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
-Route::get('/animais', [AnimaisController::class, 'index'])->name('animais');
-Route::get('/formularios', [FormulariosController::class, 'index'])->name('formularios');
-Route::get('/duvidas', [DuvidasController::class, 'index'])->name('duvidas');
-Route::get('/mensagens', [MensagensController::class, 'index'])->name('mensagens');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
+    Route::get('/animais', [AnimaisController::class, 'index'])->name('animais');
+    Route::get('/formularios/adm', [FormulariosController::class, 'index'])->name('formularios');
+    Route::get('/duvidas', [DuvidasController::class, 'index'])->name('duvidas');
+    Route::get('/mensagens', [MensagensController::class, 'index'])->name('mensagens');
+});
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login/update', [AuthController::class, 'loginUpdate'])->name('login.update');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/passowrd/reset', [AuthController::class, 'reset'])->name('password.request');
+Route::post('/password/email', [AuthController::class, 'sendResetLink'])->name('password.email');
+Route::get('/password/reset/{token}', [AuthController::class, 'showNewPasswordForm'])->name('password.reset');
+Route::post('/password/update', [AuthController::class, 'updatePassoword'])->name('password.update');
+
+// Route::get('/formulario', function () {
+//     return view('formulario');
+// });
