@@ -118,6 +118,57 @@
                                             class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
+                                        class="pet-img"></td>
+                                <td>Bella</td>
+                                <td>Cachorro</td>
+                                <td>Poodle</td>
+                                <td>2 anos</td>
+                                <td>Fêmea</td>
+                                <td><span class="status-badge available">Disponível</span></td>
+                                <td>
+                                    <a href="#" class="action-btn edit" title="Editar"><i
+                                            class="fas fa-edit"></i></a>
+                                    <a href="#" class="action-btn delete" title="Excluir"><i
+                                            class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
+                                        class="pet-img"></td>
+                                <td>Bella</td>
+                                <td>Cachorro</td>
+                                <td>Poodle</td>
+                                <td>2 anos</td>
+                                <td>Fêmea</td>
+                                <td><span class="status-badge available">Disponível</span></td>
+                                <td>
+                                    <a href="#" class="action-btn edit" title="Editar"><i
+                                            class="fas fa-edit"></i></a>
+                                    <a href="#" class="action-btn delete" title="Excluir"><i
+                                            class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
+                                        class="pet-img"></td>
+                                <td>Bella</td>
+                                <td>Cachorro</td>
+                                <td>Poodle</td>
+                                <td>2 anos</td>
+                                <td>Fêmea</td>
+                                <td><span class="status-badge available">Disponível</span></td>
+                                <td>
+                                    <a href="#" class="action-btn edit" title="Editar"><i
+                                            class="fas fa-edit"></i></a>
+                                    <a href="#" class="action-btn delete" title="Excluir"><i
+                                            class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -142,3 +193,4 @@
     </div>
 </div>
 @endsection
+

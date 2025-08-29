@@ -422,6 +422,29 @@
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
+      .btn-purple {
+          border: 1px solid;
+          background-color: var(--purple-primary);
+          color: white;
+          transition: background-color 0.3s;
+      }
+
+      .btn-save {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+
+      }
+
+      .btn-save p {
+          color: var(--purple-dark);
+          font-size: 0.9em;
+          margin-top: 0;
+          margin-bottom: 0;
+          font-weight: 600;
+      }
+
       @media (max-width: 767.98px) {
           .toggle-sidebar {
               display: flex;
@@ -620,5 +643,21 @@
 
       .pagination .page-item.active .page-link {
           background-color: var(--purple-primary);
+          border-color: var(--purple-primary);
+      }
+
+      .filter-btn.active {
+          background-color: var(--purple-primary);
+          color: white;
+          border: 1px solid var(--purple-primary);
+      }
+
+      .filter-btn:not(.active) {
+          background-color: white;
+          color: var(--purple-primary);
+          border: 1px solid #dee2e6;
+      }
+
+      .filter-btn:hover:not(.active) {
           border-color: var(--purple-primary);
       }
