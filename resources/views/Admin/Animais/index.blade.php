@@ -8,9 +8,9 @@
     <div class="dashboard-header">
         <h1 class="dashboard-title">Gerenciar Animais</h1>
         <div class="dashboard-actions">
-            <button class="btn btn-purple">
+            <a href="{{ Route('animais.criar') }}" class="btn btn-purple">
                 <i class="fas fa-plus me-2"></i> Novo Animal
-            </button>
+            </a>
         </div>
     </div>
 
@@ -193,4 +193,3 @@
     </div>
 </div>
 @endsection
-

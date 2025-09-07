@@ -58,7 +58,7 @@
                             <i class="fas fa-arrow-left me-2"></i>Voltar
                         </a>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-check me-2"></i>Salvar Alterações
+                            <i class="fas fa-check me-2"></i>Salvar
                         </button>
                     </div>
                 </div>

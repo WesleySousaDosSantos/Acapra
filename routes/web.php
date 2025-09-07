@@ -18,6 +18,8 @@ Route::get('/adocao', [ControllerHome::class, 'adocao'])->name('adocao');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
     Route::get('/animais', [AnimaisController::class, 'index'])->name('animais');
+    Route::get('/animais/criar', [AnimaisController::class, 'criar'])->name('animais.criar');
+    Route::post('/animais/store', [AnimaisController::class, 'animaisstore'])->name('animais.store');
     Route::get('/formularios/adm', [FormulariosController::class, 'index'])->name('formularios');
     Route::get('/duvidas', [DuvidasController::class, 'index'])->name('duvidas');
     Route::get('/duvidas/criar', [DuvidasController::class, 'criar'])->name('duvidas.criar');
@@ -34,6 +36,6 @@ Route::post('/password/email', [AuthController::class, 'sendResetLink'])->name('
 Route::get('/password/reset/{token}', [AuthController::class, 'showNewPasswordForm'])->name('password.reset');
 Route::post('/password/update', [AuthController::class, 'updatePassoword'])->name('password.update');
 
-// Route::get('/formulario', function () {
-//     return view('formulario');
-// });
+Route::get('/formulario', function () {
+    return view('formulario');
+});
