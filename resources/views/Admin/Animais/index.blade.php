@@ -33,16 +33,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($animais as $animal )
                             <tr>
-                                <td>1</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Luna"
-                                        class="pet-img"></td>
-                                <td>Luna</td>
-                                <td>Cachorro</td>
-                                <td>Labrador</td>
-                                <td>2 anos</td>
-                                <td>Fêmea</td>
-                                <td><span class="status-badge available">Disponível</span></td>
+                                <td>{{ $animal->id }}</td>
+                                <td><img src="{{ asset('Imagem_animal/' . $animal->imagem) }}" alt="{{ $animal->nome }}" class="pet-img"></td>
+                                <td>{{ $animal->nome }}</td>
+                                <td>{{ $animal->especie }}</td>
+                                <td>{{ $animal->raca }}</td>
+                                <td>{{ $animal->idade }}</td>
+                                <td>{{ $animal->genero }}</td>
+                                <td><span class="status-badge available">{{ $animal->status }}</span></td>
                                 <td>
                                     <a href="#" class="action-btn edit" title="Editar"><i
                                             class="fas fa-edit"></i></a>
@@ -50,125 +50,7 @@
                                             class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Cooper"
-                                        class="pet-img"></td>
-                                <td>Cooper</td>
-                                <td>Cachorro</td>
-                                <td>Golden Retriever</td>
-                                <td>3 anos</td>
-                                <td>Macho</td>
-                                <td><span class="status-badge pending">Processo de Adoção</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Mia"
-                                        class="pet-img"></td>
-                                <td>Mia</td>
-                                <td>Gato</td>
-                                <td>Siamês</td>
-                                <td>1 ano</td>
-                                <td>Fêmea</td>
-                                <td><span class="status-badge adopted">Adotado</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Max"
-                                        class="pet-img"></td>
-                                <td>Max</td>
-                                <td>Cachorro</td>
-                                <td>Pinscher</td>
-                                <td>4 anos</td>
-                                <td>Macho</td>
-                                <td><span class="status-badge available">Disponível</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
-                                        class="pet-img"></td>
-                                <td>Bella</td>
-                                <td>Cachorro</td>
-                                <td>Poodle</td>
-                                <td>2 anos</td>
-                                <td>Fêmea</td>
-                                <td><span class="status-badge available">Disponível</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
-                                        class="pet-img"></td>
-                                <td>Bella</td>
-                                <td>Cachorro</td>
-                                <td>Poodle</td>
-                                <td>2 anos</td>
-                                <td>Fêmea</td>
-                                <td><span class="status-badge available">Disponível</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
-                                        class="pet-img"></td>
-                                <td>Bella</td>
-                                <td>Cachorro</td>
-                                <td>Poodle</td>
-                                <td>2 anos</td>
-                                <td>Fêmea</td>
-                                <td><span class="status-badge available">Disponível</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td><img src="/placeholder.svg?height=50&width=50" alt="Bella"
-                                        class="pet-img"></td>
-                                <td>Bella</td>
-                                <td>Cachorro</td>
-                                <td>Poodle</td>
-                                <td>2 anos</td>
-                                <td>Fêmea</td>
-                                <td><span class="status-badge available">Disponível</span></td>
-                                <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -192,4 +74,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+
+</script>
 @endsection

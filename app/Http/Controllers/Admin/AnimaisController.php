@@ -10,7 +10,9 @@ class AnimaisController extends Controller
 {
     public function index()
     {
-        return view('Admin.Animais.index');
+        $animais = Animal::all();
+
+        return view('Admin.Animais.index', ['animais' => $animais]);
     }
 
     public function criar()
