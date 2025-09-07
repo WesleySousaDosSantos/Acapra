@@ -32,6 +32,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $statusClasses = ['disponivel' => 'available', 'processo-adoção' => 'pending', 'adotado' => 'adopted'];
+                            @endphp
                             @foreach ($animais as $animal )
                             <tr>
                                 <td>{{ $animal->id }}</td>
@@ -41,12 +44,10 @@
                                 <td>{{ $animal->raca }}</td>
                                 <td>{{ $animal->idade }}</td>
                                 <td>{{ $animal->genero }}</td>
-                                <td><span class="status-badge available">{{ $animal->status }}</span></td>
+                                <td><span class="status-badge {{ $statusClasses[$animal->status] }}">{{ $animal->status }}</span></td>
                                 <td>
-                                    <a href="#" class="action-btn edit" title="Editar"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
+                                    <a href="{{ Route('animais.editar', $animal->id) }}" class="action-btn edit" title="Editar"><i class="fas fa-edit"></i></a>
+                                    <a href="#" class="action-btn delete" title="Excluir"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

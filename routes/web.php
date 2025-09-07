@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/animais', [AnimaisController::class, 'index'])->name('animais');
     Route::get('/animais/criar', [AnimaisController::class, 'criar'])->name('animais.criar');
     Route::post('/animais/store', [AnimaisController::class, 'animaisstore'])->name('animais.store');
+    Route::get('/animais/editar/{id}', [AnimaisController::class, 'animaisEditar'])->name('animais.editar');
+    Route::post('/animais/update', [AnimaisController::class, 'update'])->name('animais.update');
     Route::get('/formularios/adm', [FormulariosController::class, 'index'])->name('formularios');
     Route::get('/duvidas', [DuvidasController::class, 'index'])->name('duvidas');
     Route::get('/duvidas/criar', [DuvidasController::class, 'criar'])->name('duvidas.criar');
