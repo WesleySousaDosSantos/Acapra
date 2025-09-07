@@ -2,7 +2,6 @@
 
 @section('title', 'Animais')
 
-
 @section('content')
 <div class="main-content">
     <div class="dashboard-header">
@@ -55,22 +54,15 @@
                     </table>
                 </div>
             </div>
-            <div class="content-card-footer">
-                <div>Mostrando 5 de 24 animais</div>
+            <div class="content-card-footer d-flex justify-content-between align-items-center">
+                <div>
+                    Mostrando {{ $animais->firstItem() }} até {{ $animais->lastItem() }}
+                </div>
                 <nav aria-label="Page navigation">
-                    <ul class="pagination pagination-sm mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Próximo</a>
-                        </li>
-                    </ul>
+                    {{ $animais->links('pagination::bootstrap-5') }}
                 </nav>
             </div>
+
         </div>
     </div>
 </div>

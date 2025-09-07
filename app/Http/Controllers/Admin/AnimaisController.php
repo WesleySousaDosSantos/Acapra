@@ -10,7 +10,8 @@ class AnimaisController extends Controller
 {
     public function index()
     {
-        $animais = Animal::all();
+        // $animais = Animal::all();
+            $animais = Animal::paginate(5);
 
         return view('Admin.Animais.index', ['animais' => $animais]);
     }

@@ -644,6 +644,11 @@
       .pagination .page-item.active .page-link {
           background-color: var(--purple-primary);
           border-color: var(--purple-primary);
+          color: white;
+      }
+
+      .text-muted {
+          display: none;
       }
 
       .filter-btn.active {
