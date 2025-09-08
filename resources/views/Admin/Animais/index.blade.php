@@ -33,7 +33,7 @@
                         </thead>
                         <tbody>
                             @php
-                                $statusClasses = ['disponivel' => 'available', 'processo-adoção' => 'pending', 'adotado' => 'adopted'];
+                            $statusClasses = ['disponivel' => 'available', 'processo-adoção' => 'pending', 'adotado' => 'adopted'];
                             @endphp
                             @foreach ($animais as $animal )
                             <tr>
@@ -46,8 +46,14 @@
                                 <td>{{ $animal->genero }}</td>
                                 <td><span class="status-badge {{ $statusClasses[$animal->status] }}">{{ $animal->status }}</span></td>
                                 <td>
-                                    <a href="{{ Route('animais.editar', $animal->id) }}" class="action-btn edit" title="Editar"><i class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i class="fas fa-trash"></i></a>
+                                    <a  href="{{ Route('animais.editar', $animal->id) }}" class="action-btn edit" title="Editar"><i class="fas fa-edit"></i></a>
+                                    <form id="delete-form-{{ $animal->id }}" action="{{ route('animais.deletar', $animal->id) }}"
+                                        method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a type="button" class="action-btn delete"
+                                            data-id="{{ $animal->id }}"><i class="fas fa-trash"></i></a>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -70,7 +76,31 @@
 @endsection
 
 @section('js')
-<script>
 
+<script>
+    document.querySelectorAll('.delete').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const animaisId = this.getAttribute('data-id');
+            const form = document.getElementById(`delete-form-${animaisId}`);
+
+            swal({
+                title: "Tem certeza que deseja excluir?",
+                text: "Essa ação não pode ser desfeita. O serviço será removido permanentemente.",
+                icon: "warning",
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: {
+                        text: "Sim, excluir",
+                        className: "btn-danger"
+                    }
+                },
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+        });
+    });
 </script>
 @endsection

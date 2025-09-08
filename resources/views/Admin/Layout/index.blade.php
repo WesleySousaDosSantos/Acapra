@@ -29,7 +29,7 @@
             </div>
 
             <div class="sidebar-menu">
-            
+
                 <a href="{{ Route('dashboard') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'dashboard' ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt"></i>
                     <span class="menu-text">Dashboard</span>
@@ -80,6 +80,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     @yield('js')
 </body>
 

@@ -138,4 +138,17 @@ class AnimaisController extends Controller
 
         return redirect()->route('animais')->with('success', 'Animal editado com sucesso!');
     }
+
+    public function deleteAniamal($id)
+    {
+        $animais = Animal::find($id);
+
+        if (!$animais) {
+            return redirect()->route('animais')->with('error', 'Animal não encontrado!');
+        }
+
+        $animais->delete();
+
+        return redirect()->route('animais')->with('success', 'Animal deletado com sucesso!');
+    }
 }

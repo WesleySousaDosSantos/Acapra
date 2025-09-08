@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/animais/store', [AnimaisController::class, 'animaisstore'])->name('animais.store');
     Route::get('/animais/editar/{id}', [AnimaisController::class, 'animaisEditar'])->name('animais.editar');
     Route::post('/animais/update', [AnimaisController::class, 'update'])->name('animais.update');
+    Route::delete('/animais/{id}', [AnimaisController::class, 'deleteAniamal'])->name('animais.deletar');
     Route::get('/formularios/adm', [FormulariosController::class, 'index'])->name('formularios');
     Route::get('/duvidas', [DuvidasController::class, 'index'])->name('duvidas');
     Route::get('/duvidas/criar', [DuvidasController::class, 'criar'])->name('duvidas.criar');
