@@ -65,31 +65,31 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label for="fullName" class="form-label required-field">Nome Completo</label>
-                                        <input type="text" class="form-control" id="fullName" required>
+                                        <input type="text" class="form-control" name="name" id="fullName" required>
                                     </div>
                                     
                                     <div class="col-md-6 form-group">
                                         <label for="email" class="form-label required-field">Email</label>
-                                        <input type="email" class="form-control" id="email" required>
+                                        <input type="email" class="form-control" name="email" id="email" required>
                                     </div>
                                 </div>
                                 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label for="phone" class="form-label required-field">Telefone</label>
-                                        <input type="tel" class="form-control" id="phone" required>
+                                        <input type="tel" class="form-control" name="phone" id="phone" required>
                                     </div>
                                     
                                     <div class="col-md-6 form-group">
                                         <label for="age" class="form-label required-field">Idade</label>
-                                        <input type="number" class="form-control" id="age" min="18" max="120" required>
+                                        <input type="number" class="form-control" name="age" id="age" min="18" max="120" required>
                                         <div class="form-text">Se for menor de idade, seus responsáveis devem responder o formulário.</div>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="income" class="form-label required-field">Qual a sua renda?</label>
-                                    <select class="form-select" id="income" required>
+                                    <select class="form-select" id="income" name="renda" required>
                                         <option value="" selected disabled>Selecione uma opção</option>
                                         <option value="ate-1000">Até R$ 1.000</option>
                                         <option value="1001-3000">R$ 1.001 a R$ 3.000</option>
@@ -103,12 +103,12 @@
                                 
                                 <div class="form-group">
                                     <label for="address" class="form-label required-field">Qual seu endereço completo?</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Rua, número, CEP, complemento e ponto de referência" required>
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="Rua, número, CEP, complemento e ponto de referência" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="residenceType" class="form-label required-field">Você mora em casa ou apartamento?</label>
-                                    <select class="form-select" id="residenceType" required>
+                                    <select class="form-select" name="residential" id="residenceType" required>
                                         <option value="" selected disabled>Selecione uma opção</option>
                                         <option value="casa">Casa</option>
                                         <option value="apartamento">Apartamento</option>
@@ -118,7 +118,7 @@
                                 
                                 <div class="form-group">
                                     <label for="residenceOwnership" class="form-label required-field">A residência é própria ou alugada?</label>
-                                    <select class="form-select" id="residenceOwnership" required>
+                                    <select class="form-select" name="property" id="residenceOwnership" required>
                                         <option value="" selected disabled>Selecione uma opção</option>
                                         <option value="propria">Própria</option>
                                         <option value="alugada">Alugada</option>
@@ -128,13 +128,13 @@
                                 
                                 <div class="form-group">
                                     <label for="petSpace" class="form-label required-field">Qual o local em que o animal irá ficar? A sua casa/apto possui um espaço adequado e cercado?</label>
-                                    <textarea class="form-control" id="petSpace" rows="3" required></textarea>
+                                    <textarea class="form-control" name="petSpace" id="petSpace" rows="3" required></textarea>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="form-label required-field">Todos da sua residência concordam com a adoção?</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="familyAgreement" id="familyAgreementYes" value="sim" required>
+                                        <input class="form-check-input" type="radio" name="cccc" id="familyAgreementYes" value="sim" required>
                                         <label class="form-check-label" for="familyAgreementYes">
                                             Sim
                                         </label>
@@ -167,7 +167,7 @@
                                 
                                 <div class="form-group" id="otherPetsGroup" style="display: none;">
                                     <label for="otherPets" class="form-label">Se sim, quantos e quais?</label>
-                                    <textarea class="form-control" id="otherPets" rows="2"></textarea>
+                                    <textarea class="form-control" id="otherPets" name="otherPets" rows="2"></textarea>
                                 </div>
                                 
                                 <div class="form-group" id="otherPetsVaccinatedGroup" style="display: none;">
@@ -206,7 +206,7 @@
                                 
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                                        <input class="form-check-input" type="checkbox" id="termsAgreement" value="sim" required>
                                         <label class="form-check-label" for="termsAgreement">
                                             Declaro que li e concordo com os <a href="#" class="text-decoration-none">termos de adoção</a> da ACAPRA.
                                         </label>
@@ -215,7 +215,7 @@
                                 
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="followUpAgreement" required>
+                                        <input class="form-check-input" type="checkbox" id="followUpAgreement" value="sim" required>
                                         <label class="form-check-label" for="followUpAgreement">
                                             Concordo em receber visitas de acompanhamento da ACAPRA após a adoção.
                                         </label>

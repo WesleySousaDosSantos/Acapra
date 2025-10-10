@@ -259,7 +259,7 @@
                     <div class="col-lg-4">
                         <div class="contact-info">
                             <h3>Informações de Contato</h3>
-                            
+
                             <div class="contact-info-item">
                                 <i class="fas fa-phone-alt"></i>
                                 <div class="content">
@@ -267,7 +267,7 @@
                                     <p>(11) 9876-5432<br>(11) 1234-5678</p>
                                 </div>
                             </div>
-                            
+
                             <div class="contact-info-item">
                                 <i class="fas fa-envelope"></i>
                                 <div class="content">
@@ -275,7 +275,7 @@
                                     <p>contato@acapra.org<br>adocao@acapra.org</p>
                                 </div>
                             </div>
-                            
+
                             <div class="contact-info-item">
                                 <i class="fas fa-clock"></i>
                                 <div class="content">
@@ -283,7 +283,7 @@
                                     <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 14h</p>
                                 </div>
                             </div>
-                            
+
                             <div class="social-contact">
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -292,35 +292,41 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-8">
                         <div class="contact-form">
                             <h3>Envie sua Mensagem</h3>
-                            
-                            <form id="contactForm">
+
+                            <form class="formulario" id="contactForm" action="{{ route('mensagens.create')}}" method="POST">
+                                @csrf
+
+                                @if(session('success'))
+                                  <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Seu nome" required>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome" required>
                                     </div>
-                                    
+
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com" required>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="phone" class="form-label">Telefone</label>
-                                        <input type="tel" class="form-control" id="phone" placeholder="(00) 00000-0000">
+                                        <input type="text" class="form-control" id="phone" name="phone" maxlength="16" placeholder="(00) 00000-0000">
                                     </div>
-                                    
+
                                     <div class="col-md-6 mb-3">
                                         <label for="subject" class="form-label">Assunto</label>
-                                        <select class="form-select" id="subject" required>
+                                        <select class="form-select" id="subject" name="subject" required>
                                             <option value="" selected disabled>Selecione um assunto</option>
-                                            <option value="adocao">Adoção de Animal</option>
+                                            <option value="adocao_animal">Adoção de Animal</option>
                                             <option value="doacao">Doação</option>
                                             <option value="voluntario">Voluntariado</option>
                                             <option value="resgate">Resgate de Animal</option>
@@ -328,12 +334,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <label for="message" class="form-label">Mensagem</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="Digite sua mensagem aqui..." required></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Digite sua mensagem aqui..." required></textarea>
                                 </div>
-                                
+
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-submit">
                                         Enviar Mensagem <i class="fas fa-paper-plane ms-2"></i>
@@ -350,7 +356,7 @@
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold text-white">Perguntas Frequentes</h2>
-            
+
             <div class="row justify-content-center container-pergunta-fq">
                 <div class="col-lg-8">
                     <div class="accordion" id="faqAccordion">
@@ -366,7 +372,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item mb-3 border rounded">
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -379,7 +385,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item mb-3 border rounded">
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -392,7 +398,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item border rounded">
                             <h2 class="accordion-header" id="headingFour">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -437,21 +443,27 @@
             </div>
         </div>
     </footer>
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const slider = document.querySelector('.testimonial-slider');
             const prevBtn = document.querySelector('.slider-arrow.prev');
             const nextBtn = document.querySelector('.slider-arrow.next');
             const cardWidth = 200;
 
-            prevBtn.addEventListener('click', function () {
+            prevBtn.addEventListener('click', function() {
                 slider.scrollBy({
                     left: -cardWidth,
                     behavior: 'smooth'
                 });
             });
 
-            nextBtn.addEventListener('click', function () {
+            nextBtn.addEventListener('click', function() {
                 slider.scrollBy({
                     left: cardWidth,
                     behavior: 'smooth'
@@ -459,8 +471,29 @@
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $(".formulario").submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: "{{ route('mensagens.create') }}",
+                    method: "POST",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        alert("Mensagem enviada com sucesso!");
+                        $(".formulario")[0].reset(); 
+                    },
+                    error: function(xhr) {
+                        alert("Erro ao enviar a mensagem!");
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

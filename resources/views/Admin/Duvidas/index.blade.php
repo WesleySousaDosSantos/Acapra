@@ -35,8 +35,16 @@
                                 <td>
                                     <a href="{{ route('duvidas.editar', $duvida->id)}}" class="action-btn edit" title="Editar"><i
                                             class="fas fa-edit"></i></a>
-                                    <a href="#" class="action-btn delete" title="Excluir"><i
-                                            class="fas fa-trash"></i></a>
+                                    <form id="delete-form-{{ $duvida->id }}"
+                                        action="{{ Route('duvidas.delete', $duvida->id) }}"
+                                        method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <a data-id={{ $duvida->id }} class="action-btn delete" title="Excluir">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -47,4 +55,37 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+
+<script>
+    document.querySelectorAll('.delete').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const animaisId = this.getAttribute('data-id');
+            const form = document.getElementById(`delete-form-${animaisId}`);
+
+            swal({
+                title: "Tem certeza que deseja excluir?",
+                text: "Essa ação não pode ser desfeita. O serviço será removido permanentemente.",
+                icon: "warning",
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: {
+                        text: "Sim, excluir",
+                        className: "btn-danger"
+                    }
+                },
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
+
 @endsection
