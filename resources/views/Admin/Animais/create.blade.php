@@ -238,29 +238,22 @@
         </div>
 
         <div class="form-card">
-            <div class="form-card-header">
+            <div class="form-card-header" style="display: none;">
                 <h5 class="form-card-title">
                     <i class="fas fa-toggle-on"></i>
                     Status e Disponibilidade
                 </h5>
             </div>
-            <div class="form-card-body">
+            <div class="form-card-body" style="display: none;">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="status" class="form-label">Status <span class="required">*</span></label>
-                        <select class="form-select" id="status" name="status" required>
-                            <option value="" selected disabled>Selecione o status</option>
-                            <option value="disponivel">Disponível</option>
-                            <option value="processo-adoção">Processo de Adoção</option>
-                            <option value="adotado">Adotado</option>
-                        </select>
+                        <input type="hidden" placeholder="Nome do animal" class="form-control" id="nomeAnimal" name="status" value="disponivel">
                         @error('status')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-
-
             </div>
 
             <div class="form-actions">
