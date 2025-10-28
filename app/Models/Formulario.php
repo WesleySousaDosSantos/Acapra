@@ -28,7 +28,11 @@ class Formulario extends Model
         'agreeVaccination',
         'aceita_termos',
         'aceita_visitas',
-        'status'
+        'status',
+        'rgPhoto',
+        'incomeProof',
+        'otherPetsPhotos',
+        'fencePhoto'
     ];
 
     public function animal()

@@ -27,9 +27,30 @@
                             </div>
                         </div>
 
-                        <form id="adoptionForm" action="{{ Route('formulario.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ Route('formulario.store') }}" method="post" enctype="multipart/form-data">
                             @method('POST')
                             @csrf
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+
+                            @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                            @endif
+
+                            @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                            @endif
 
                             <input type="hidden" name="animal_id" value="{{ $animais->id }}">
 
@@ -40,7 +61,7 @@
                                     <label for="fullName" class="form-label required-field">Nome Completo</label>
                                     <input type="text" class="form-control" name="name" id="fullName" required>
                                     @error('name')
-                                      <div style="color:brown">{{ $message }}</div>
+                                    <div style="color:brown">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -75,6 +96,18 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label for="rgPhoto" class="form-label required-field">Foto do RG</label>
+                                <input type="file" class="form-control file-upload-input" name="rgPhoto" id="rgPhoto" accept="image/*" required>
+                                <div class="form-text">Envie uma foto clara do seu documento de identidade (RG ou CNH).</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="incomeProof" class="form-label required-field">Foto do Comprovante de Renda</label>
+                                <input type="file" class="form-control file-upload-input" name="incomeProof" id="incomeProof" accept="image/*" required>
+                                <div class="form-text">Envie holerite, declaração de imposto de renda ou outro comprovante.</div>
+                            </div>
+
                             <h3 class="form-section-title mt-5">Informações de Residência</h3>
 
                             <div class="form-group">
@@ -106,6 +139,21 @@
                                 <label for="petSpace" class="form-label required-field">Qual o local em que o animal irá ficar? A sua casa/apto possui um espaço adequado e cercado?</label>
                                 <textarea class="form-control" name="petSpace" id="petSpace" rows="3" required></textarea>
                             </div>
+
+                            <div class="form-group">
+                                <label for="locationPhoto" class="form-label required-field">Foto do Local onde o Animal Irá Ficar</label>
+                                <input type="file" class="form-control file-upload-input" id="locationPhoto" accept="image/*" multiple required>
+                                <div class="form-text">Envie fotos do terreno, casa, quintal, canil ou local onde o animal ficará.</div>
+                                <div class="file-preview" id="locationPhotoPreview"></div>
+                            </div>
+
+                            @if ($animais->especie == 'gato')
+                            <div class="form-group">
+                                <label for="fencePhoto" class="form-label required-field">Foto das Telas/Cercas</label>
+                                <input type="file" class="form-control file-upload-input" name="fencePhoto[]" id="fencePhoto" accept="image/*" multiple>
+                                <div class="form-text">Envie fotos das telas de proteção, cercas ou muros que garantem a segurança do animal.</div>
+                            </div>
+                            @endif
 
                             <div class="form-group">
                                 <label class="form-label required-field">Todos da sua residência concordam com a adoção?</label>
@@ -146,6 +194,7 @@
                                 <textarea class="form-control" id="otherPets" name="otherPets" rows="2"></textarea>
                             </div>
 
+
                             <div class="form-group" id="otherPetsVaccinatedGroup" style="display: none;">
                                 <label class="form-label">São castrados e vacinados?</label>
                                 <div class="form-check">
@@ -160,6 +209,23 @@
                                         Não
                                     </label>
                                 </div>
+                            </div>
+
+                            <div id="otherPetsPhotosGroup" style="display: none;">
+                                <h4 class="form-section-title mt-4 mb-3">Fotos dos Outros Animais</h4>
+                                <div class="form-text mb-3">Adicione fotos de cada um dos seus animais de estimação.</div>
+
+                                <div id="otherAnimalsContainer"></div>
+
+                                <button type="button" class="btn btn-outline-primary mt-3" id="addAnimalBtn">
+                                    <i class="fas fa-plus"></i> Adicionar Outro Animal
+                                </button>
+                            </div>
+
+                            <div class="form-group" id="otherPetsPhotosGroup" style="display: none;">
+                                <label for="otherPetsPhotos" class="form-label required-field">Fotos dos Outros Animais</label>
+                                <input type="file" class="form-control file-upload-input" name="otherPetsPhotos[]" id="otherPetsPhotos" accept="image/*" multiple>
+                                <div class="form-text">Envie fotos dos seus outros animais de estimação.</div>
                             </div>
 
                             <div class="form-group">
@@ -223,21 +289,131 @@
         const hasOtherPetsNo = document.getElementById('hasOtherPetsNo');
         const otherPetsGroup = document.getElementById('otherPetsGroup');
         const otherPetsVaccinatedGroup = document.getElementById('otherPetsVaccinatedGroup');
+        const otherPetsPhotosGroup = document.getElementById('otherPetsPhotosGroup');
+        const vaccinationCardsGroup = document.getElementById('vaccinationCardsGroup');
 
-        function toggleOtherPetsFields() {
-            if (hasOtherPetsYes.checked) {
+        let animalCount = 0;
+        const otherAnimalsContainer = document.getElementById('otherAnimalsContainer');
+        const addAnimalBtn = document.getElementById('addAnimalBtn');
+
+        hasOtherPetsYes.addEventListener('change', function() {
+            if (this.checked) {
                 otherPetsGroup.style.display = 'block';
                 otherPetsVaccinatedGroup.style.display = 'block';
-            } else {
+                otherPetsPhotosGroup.style.display = 'block';
+                document.getElementById('otherPets').setAttribute('required', '');
+                document.querySelectorAll('input[name="otherPetsVaccinated"]').forEach(radio => {
+                    radio.setAttribute('required', '');
+                });
+
+                if (animalCount === 0) {
+                    addAnimalEntry();
+                }
+            }
+        });
+
+        hasOtherPetsNo.addEventListener('change', function() {
+            if (this.checked) {
                 otherPetsGroup.style.display = 'none';
                 otherPetsVaccinatedGroup.style.display = 'none';
+                otherPetsPhotosGroup.style.display = 'none';
+                document.getElementById('otherPets').removeAttribute('required');
+                document.querySelectorAll('input[name="otherPetsVaccinated"]').forEach(radio => {
+                    radio.removeAttribute('required');
+                });
+
+                otherAnimalsContainer.innerHTML = '';
+                animalCount = 0;
+            }
+        });
+
+        function addAnimalEntry() {
+            animalCount++;
+            const animalId = `animal-${animalCount}`;
+
+            const animalEntry = document.createElement('div');
+            animalEntry.className = 'animal-entry mb-4 p-3 border rounded';
+            animalEntry.id = animalId;
+            animalEntry.style.backgroundColor = '#f8f9fa';
+            animalEntry.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0" style="color: var(--purple-primary);">
+                            <i class="fas fa-paw"></i> Animal ${animalCount}
+                        </h5>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-animal-btn" data-animal-id="${animalId}">
+                            <i class="fas fa-trash"></i> Remover
+                        </button>
+                    </div>
+                    
+                   <div class="form-group mb-0">
+                        <label for="${animalId}-photo" class="form-label required-field">Foto do Animal</label>
+                        <input type="file" class="form-control file-upload-input" id="${animalId}-photo" 
+                            name="otherPetsPhotos[]" accept="image/*" required>
+                        <div class="form-text">Envie uma foto clara do seu animal de estimação.</div>
+                  </div>
+                `;
+
+            otherAnimalsContainer.appendChild(animalEntry);
+
+            setupFilePreview(`${animalId}-photo`, `${animalId}-photo-preview`);
+
+            const removeBtn = animalEntry.querySelector('.remove-animal-btn');
+            removeBtn.addEventListener('click', function() {
+                removeAnimalEntry(animalId);
+            });
+        }
+
+        function removeAnimalEntry(animalId) {
+            const animalEntry = document.getElementById(animalId);
+            if (animalEntry) {
+                animalEntry.remove();
+
+                const remainingAnimals = otherAnimalsContainer.querySelectorAll('.animal-entry');
+                remainingAnimals.forEach((entry, index) => {
+                    const title = entry.querySelector('h5');
+                    title.innerHTML = `<i class="fas fa-paw"></i> Animal ${index + 1}`;
+                });
+
+                animalCount = remainingAnimals.length;
+
+                if (animalCount === 0) {
+                    addAnimalEntry();
+                }
             }
         }
 
-        hasOtherPetsYes.addEventListener('change', toggleOtherPetsFields);
-        hasOtherPetsNo.addEventListener('change', toggleOtherPetsFields);
+        addAnimalBtn.addEventListener('click', function() {
+            addAnimalEntry();
+        });
 
-        toggleOtherPetsFields();
+        function setupFilePreview(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+
+            if (!input || !preview) return;
+
+            input.addEventListener('change', function(e) {
+                const files = e.target.files;
+                preview.innerHTML = '';
+
+                if (files.length > 0) {
+                    preview.classList.add('active');
+                    Array.from(files).forEach((file, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'file-preview-item';
+                        item.innerHTML = `
+                                <span class="file-preview-name">
+                                    <i class="fas fa-file-image text-success"></i> ${file.name}
+                                </span>
+                                <i class="fas fa-times file-preview-remove" data-index="${index}"></i>
+                            `;
+                        preview.appendChild(item);
+                    });
+                } else {
+                    preview.classList.remove('active');
+                }
+            });
+        }
     });
 </script>
 @endsection

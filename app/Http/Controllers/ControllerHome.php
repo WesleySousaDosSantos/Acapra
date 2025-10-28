@@ -31,34 +31,6 @@ class ControllerHome extends Controller
 
     public function formulariocrete(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'age' => 'required|integer|min:18',
-            'renda' => 'required|string|max:100',
-            'animal_id' => 'required|integer|exists:animals,id',
-            'address' => 'required|string|max:255',
-            'residential' => 'required|string|max:100',
-            'property' => 'required|string|max:100',
-            'petSpace' => 'required|string|max:255',
-            'familyAgreement' => 'required|in:sim,nao',
-            'hasOtherPets' => 'required|in:sim,nao',
-            'otherPets' => 'nullable|string|max:255',
-            'otherPetsVaccinated' => 'nullable|in:sim,nao',
-            'agreeVaccination' => 'required|in:sim,nao',
-            'aceita_termos' => 'accepted',
-            'aceita_visitas' => 'accepted',
-            'status' => 'nullable|string|max:50',
-        ], [
-            'name.required' => 'O campo nome é obrigatório.',
-            'email.required' => 'Informe um e-mail válido.',
-            'age.min' => 'Você precisa ter pelo menos 18 anos para adotar.',
-            'aceita_termos.accepted' => 'Você deve aceitar os termos de adoção.',
-        ]);
-        
-        dd($request->all());
-
         $formulario = new Formulario;
 
         $formulario->name = $request->name;
@@ -80,8 +52,48 @@ class ControllerHome extends Controller
         $formulario->aceita_visitas = $request->aceita_visitas;
         $formulario->status = $request->status;
 
+        if ($request->hasFile('rgPhoto') && $request->file('rgPhoto')->isValid()) {
+            $file = $request->file('rgPhoto');
+            $imageName = md5($file->getClientOriginalName() . time()) . '.' . $file->extension();
+            $file->move(public_path('Imagens_formulario'), $imageName);
+            $formulario->rgPhoto = $imageName;
+        }
+
+        if ($request->hasFile('incomeProof') && $request->file('incomeProof')->isValid()) {
+            $file = $request->file('incomeProof');
+            $imageName = md5($file->getClientOriginalName() . time()) . '.' . $file->extension();
+            $file->move(public_path('Imagens_formulario'), $imageName);
+            $formulario->incomeProof = $imageName;
+        }
+
+        if ($request->hasFile('otherPetsPhotos')) {
+            $photoNames = [];
+            foreach ($request->file('otherPetsPhotos') as $file) {
+                if ($file->isValid()) {
+                    $imageName = md5($file->getClientOriginalName() . time()) . '.' . $file->extension();
+                    $file->move(public_path('Imagens_outros_animais'), $imageName);
+                    $photoNames[] = $imageName;
+                }
+            }
+            $formulario->otherPetsPhotos = json_encode($photoNames);
+        }
+
+        $formulario->fencePhoto = null;
+
+        if ($request->hasFile('fencePhoto')) {
+            $fenceNames = [];
+            foreach ($request->file('fencePhoto') as $file) {
+                if ($file->isValid()) {
+                    $imageName = md5($file->getClientOriginalName() . time()) . '.' . $file->extension();
+                    $file->move(public_path('Imagens_cercas'), $imageName);
+                    $fenceNames[] = $imageName;
+                }
+            }
+            $formulario->fencePhoto = json_encode($fenceNames);
+        }
+
         $formulario->save();
 
-        return redirect()->route('adocao')->with('success', 'Formulario enviado com sucesso');
+        return redirect()->route('adocao')->with('success', 'Formulário enviado com sucesso!');
     }
 }

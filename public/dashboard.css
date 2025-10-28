@@ -1581,3 +1581,31 @@
           font-weight: bold;
           color: white;
       }
+
+      .animal-entry {
+          position: relative;
+          transition: all 0.3s ease;
+      }
+
+      .animal-entry:hover {
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .remove-animal-btn {
+          transition: all 0.3s ease;
+      }
+
+      .remove-animal-btn:hover {
+          transform: scale(1.05);
+      }
+
+      #addAnimalBtn {
+          border-color: var(--purple-primary);
+          color: var(--purple-primary);
+          transition: all 0.3s ease;
+      }
+
+      #addAnimalBtn:hover {
+          background-color: var(--purple-primary);
+          color: white;
+      }
