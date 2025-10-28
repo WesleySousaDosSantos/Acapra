@@ -8,7 +8,7 @@
         <h1 class="dashboard-title"><i class="fas fa-add me-3"></i>Cadastrar Novo Animal</h1>
     </div>
 
-    <form action="{{ Route('animais.store') }}" method="POST" id="novoAnimalForm" enctype="multipart/form-data">
+    <form action="{{ Route('dashboard.animal.store') }}" method="POST" id="novoAnimalForm" enctype="multipart/form-data">
         @csrf
         <div class="form-card">
             <div class="form-card-header">

@@ -37,4 +37,9 @@ class Animal extends Model
         'updated_at',
         'imagem'
     ];
+
+       public function formularios()
+    {
+        return $this->hasMany(Formulario::class, 'animal_id');
+    }
 }

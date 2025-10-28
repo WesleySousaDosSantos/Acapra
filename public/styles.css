@@ -724,6 +724,10 @@ hr {
     opacity: 0.9;
 }
 
+.bg-primary {
+    background-color: var(--purple-dark) !important;
+}
+
 .facebook {
     background-color: #3b5998;
 }

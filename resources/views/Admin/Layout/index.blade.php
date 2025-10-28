@@ -38,7 +38,10 @@
                     <i class="fas fa-dog"></i>
                     <span class="menu-text">Animais</span>
                 </a>
-                <a href="{{ Route('formularios') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'formularios' ? 'active' : '' }}">
+                @php
+                     $formularioativo = in_array(Route::currentRouteName(), ['formularios', 'formularios.show'])
+                @endphp
+                <a href="{{ Route('formularios') }}" class="sidebar-menu-item {{ $formularioativo ? 'active' : '' }}">
                     <i class="fas fa-file-alt"></i>
                     <span class="menu-text">Formulários</span>
                 </a>
@@ -46,31 +49,33 @@
                     <i class="fas fa-question"></i>
                     <span class="menu-text">Dúvidas</span>
                 </a>
-                <a href="{{ Route('mensagens') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'mensagens' ? 'active' : '' }}">
+                @php
+                $mensagemativa = in_array(Route::currentRouteName(), ['mensagens', 'mensagens.show'])
+                @endphp
+                <a href="{{ Route('mensagens') }}" class="sidebar-menu-item {{ $mensagemativa ? 'active' : '' }}">
                     <i class="fas fa-envelope"></i>
                     <span class="menu-text">Mensagens</span>
                 </a>
 
                 <div class="sidebar-divider"></div>
 
-                <a href="#" class="sidebar-menu-item">
+                <a href="{{ Route('usuario') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'usuario' ? 'active' : '' }}">
                     <i class="fas fa-users"></i>
                     <span class="menu-text">Usuários</span>
                 </a>
-                <a href="#" class="sidebar-menu-item">
+                <a href="{{ Route('configuracao') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'configuracao' ? 'active' : '' }}">
                     <i class="fas fa-cog"></i>
                     <span class="menu-text">Configurações</span>
                 </a>
             </div>
-
             <div class="sidebar-footer">
                 <div class="user-info">
                     <div class="user-avatar">
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="user-info-text">
-                        <div class="user-name">Admin ACAPRA</div>
-                        <div class="user-role">Administrador</div>
+                        <div class="user-name">ACAPRA</div>
+                        <div class="user-role">Sair</div>
                     </div>
                 </div>
             </div>
@@ -81,7 +86,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     @yield('js')
 </body>
 

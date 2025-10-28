@@ -60,4 +60,17 @@ class DuvidasController extends Controller
 
         return redirect()->route('duvidas')->with('success', 'Dúvida criada com alterada com sucesso!');
     }
+
+        public function delete($id)
+    {
+        $duvidas = Duvida::find($id);
+
+        if (!$duvidas) {
+            return redirect()->route('duvidas', 'Dúvida não encontrada');
+        }
+
+        $duvidas->delete();
+
+        return redirect()->route('duvidas', 'Dúvida deletada com sucesso');
+    }
 }
