@@ -50,18 +50,21 @@ class AuthController extends Controller
         return view('Admin.Auth.forgot');
     }
 
-    public function sendResetLink(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
+public function sendResetLink(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
 
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['status' => __($status)]);
+    if ($status === Password::RESET_LINK_SENT) {
+        return redirect()->route('login')->with('status', 'Link de redefinição de senha enviado para seu e-mail!');
     }
+
+    return back()->withErrors(['email' => __($status)]);
+}
+
 
     public function showNewPasswordForm($token)
     {

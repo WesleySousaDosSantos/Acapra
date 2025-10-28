@@ -39,7 +39,7 @@
                     <span class="menu-text">Animais</span>
                 </a>
                 @php
-                     $formularioativo = in_array(Route::currentRouteName(), ['formularios', 'formularios.show'])
+                $formularioativo = in_array(Route::currentRouteName(), ['formularios', 'formularios.show'])
                 @endphp
                 <a href="{{ Route('formularios') }}" class="sidebar-menu-item {{ $formularioativo ? 'active' : '' }}">
                     <i class="fas fa-file-alt"></i>
@@ -73,10 +73,13 @@
                     <div class="user-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="user-info-text">
-                        <div class="user-name">ACAPRA</div>
-                        <div class="user-role">Sair</div>
-                    </div>
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                        @csrf
+                        <button type="submit" class="user-info-text" style="background: none; border: none; color: inherit; text-align: left; padding: 0;">
+                            <div class="user-name">ACAPRA</div>
+                            <div class="user-role">Sair</div>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

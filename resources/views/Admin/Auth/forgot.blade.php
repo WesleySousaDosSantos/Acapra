@@ -5,10 +5,31 @@
 @section('content')
 <div class="col-md-7">
     <div class="login-form">
-        <h2 class="text-center mb-4 fw-bold">Bem-vindo de volta!</h2>
+        <h2 class="text-center mb-4 fw-bold">Esqueceu a Senha?</h2>
 
         <form method="POST" action="{{ Route('password.email') }}">
             @csrf
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div class="input-group">
