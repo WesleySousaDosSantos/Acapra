@@ -85,7 +85,7 @@
 
             swal({
                 title: "Tem certeza que deseja excluir?",
-                text: "Essa ação não pode ser desfeita. O serviço será removido permanentemente.",
+                text: "Essa ação não pode ser desfeita.",
                 icon: "warning",
                 buttons: {
                     cancel: "Cancelar",

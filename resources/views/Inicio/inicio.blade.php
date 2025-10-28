@@ -16,14 +16,14 @@
         <header>
             <div class="container py-3">
                 <div class="d-flex justify-content-around align-items-center">
-                    <div class="logo-placeholder">
+                    <a href="{{ Route('index') }}" class="logo-placeholder" style="text-decoration: none; color:white;">
                         <i class="fas fa-paw"></i> ACAPRA
-                    </div>
+                    </a>
                     <nav>
                         <ul class="d-flex list-unstyled mb-0 gap-4 align-items-center">
                             <li><a href={{ Route('index') }} class="text-decoration-none">Home</a></li>
-                            <li><a href="#" class="text-decoration-none">Sobre</a></li>
-                            <li><a href="#" class="text-decoration-none">Contato</a></li>
+                            <li><a href="{{ url('/#sobre') }}" class="text-decoration-none">Sobre</a></li>
+                            <li><a href="{{ url('/#contato') }}" class="text-decoration-none">Contato</a></li>
                             <li><a href={{ Route('adocao') }} class="btn btn-purple">Adotar</a></li>
                         </ul>
                     </nav>
@@ -132,7 +132,7 @@
         </div>
     </section>
 
-    <section class="about py-5">
+    <section id="sobre" class="about py-5">
         <div class="container">
             <div class="row align-items-center quem-somos">
                 <div class="col-lg-5 mb-4 mb-lg-0 text-center">
@@ -158,7 +158,7 @@
     <section class="bg-light pt-5 text-center container-agora">
         <div class="container">
             <h2 class="display-5 fw-bold mb-4">O que está esperando?</h2>
-            <a href="#" class="btn btn-purple btn-lg mb-5">Adotar agora</a>
+            <a href="href={{ Route('adocao') }}" class="btn btn-purple btn-lg mb-5">Adotar agora</a>
             <div class="dogs-image">
                 <img src="animaiss.png" alt="Acapra" class="animal">
             </div>
@@ -168,13 +168,12 @@
     <section class="donation py-5 text-center">
         <div class="container">
             <h2 class="display-5 fw-bold mb-4">Quer fazer uma doação?</h2>
-            <a href="#" class="btn btn-outline-light btn-lg">Quero doar</a>
+            <a href="{{ Route('adocao') }}" class="btn btn-outline-light btn-lg">Quero Adotar</a>
         </div>
     </section>
     <section class="bg-light py-5">
         <div class="container">
-            <h2 class="display-6 fw-bold text-center mb-5">Veja nossas experiências compartilhadas aqui na Acapra</h2>
-
+            <h2 class="display-6 fw-bold text-center mb-5">Conheça alguns dos nossos animais</h2>
             <div class="position-relative">
                 <div class="d-flex align-items-center">
                     <button class="slider-arrow prev me-3">
@@ -182,53 +181,15 @@
                     </button>
 
                     <div class="testimonial-slider d-flex overflow-auto">
-                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
-                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
-                                alt="Cachorro adotado" width="80" height="80">
-                            <h3 class="fs-5 fw-bold mb-2">Felipe Adams</h3>
-                            <p class="text-muted mb-3">Meu cachorro é adorável e alegre para onde quer que eu o leve.
-                            </p>
-                        </div>
 
+                        @foreach ($animais as $animal)
                         <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
                             <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
                                 alt="Cachorro adotado" width="80" height="80">
-                            <h3 class="fs-5 fw-bold mb-2">João Santos</h3>
-                            <p class="text-muted mb-3">Adotar meu companheiro de quatro patas foi a melhor decisão para
-                                mim.</p>
+                            <h3 class="fs-5 fw-bold mb-2"> {{$animal->nome}} </h3>
+                            <p class="text-muted mb-3">{{$animal->descricao}}</p>
                         </div>
-
-                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
-                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
-                                alt="Cachorro adotado" width="80" height="80">
-                            <h3 class="fs-5 fw-bold mb-2">Ana Pereira</h3>
-                            <p class="text-muted mb-3">Meu cachorro me acompanha a um verdadeiro membro da família
-                                agora.</p>
-                        </div>
-
-                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
-                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
-                                alt="Cachorro adotado" width="80" height="80">
-                            <h3 class="fs-5 fw-bold mb-2">Ana Pereira</h3>
-                            <p class="text-muted mb-3">Meu cachorro me acompanha a um verdadeiro membro da família
-                                agora.</p>
-                        </div>
-
-                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
-                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
-                                alt="Cachorro adotado" width="80" height="80">
-                            <h3 class="fs-5 fw-bold mb-2">Ana Pereira</h3>
-                            <p class="text-muted mb-3">Meu cachorro me acompanha a um verdadeiro membro da família
-                                agora.</p>
-                        </div>
-
-                        <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
-                            <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
-                                alt="Cachorro adotado" width="80" height="80">
-                            <h3 class="fs-5 fw-bold mb-2">Pedro Costa</h3>
-                            <p class="text-muted mb-3">Adotar me mostrou o que é experiência incrível. Ele me ama, eu o
-                                amo.</p>
-                        </div>
+                        @endforeach
                     </div>
 
                     <button class="slider-arrow next ms-3">
@@ -238,7 +199,7 @@
             </div>
         </div>
     </section>
-    <section class="contact-header">
+    <section id="contato" class="contact-header">
         <div class="container text-center">
             <h1 class="display-4 fw-bold mb-3">Entre em Contato</h1>
             <p class="lead mb-0">Estamos aqui para ajudar você e nossos amigos de quatro patas</p>
@@ -301,7 +262,7 @@
                                 @csrf
 
                                 @if(session('success'))
-                                  <div class="alert alert-success">{{ session('success') }}</div>
+                                   <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
 
                                 <div class="row">
@@ -360,62 +321,33 @@
             <div class="row justify-content-center container-pergunta-fq">
                 <div class="col-lg-8">
                     <div class="accordion" id="faqAccordion">
+                        @foreach ($duvidas as $index => $duvida)
+                        @php
+                        $headingId = "heading{$index}";
+                        $collapseId = "collapse{$index}";
+                        @endphp
                         <div class="accordion-item mb-3 border rounded">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Como funciona o processo de adoção?
+                            <h2 class="accordion-header" id="{{ $headingId }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#{{ $collapseId }}" aria-expanded="false"
+                                    aria-controls="{{ $collapseId }}">
+                                    {{ $duvida->titulo }}
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div id="{{ $collapseId }}" class="accordion-collapse collapse"
+                                aria-labelledby="{{ $headingId }}" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    O processo de adoção começa com uma visita ao nosso abrigo, onde você pode conhecer os animais disponíveis. Após escolher seu novo amigo, realizamos uma entrevista e visita à sua residência para garantir um ambiente adequado. Aprovado, você assina um termo de adoção responsável e leva seu novo companheiro para casa.
+                                    {{ $duvida->descricao }}
                                 </div>
                             </div>
                         </div>
-
-                        <div class="accordion-item mb-3 border rounded">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Quais são os requisitos para adotar um animal?
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Para adotar, você precisa ser maior de 18 anos, apresentar documento de identidade e comprovante de residência. Também avaliamos se o ambiente é adequado para o animal e se toda a família está de acordo com a adoção. Nosso objetivo é garantir que o animal tenha um lar amoroso e seguro.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item mb-3 border rounded">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Como posso ajudar se não posso adotar?
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Existem várias formas de ajudar! Você pode fazer doações financeiras, doar ração, medicamentos ou itens de limpeza. Também pode se tornar voluntário, ajudando nos cuidados com os animais, eventos de adoção ou divulgação nas redes sociais. Cada contribuição faz diferença na vida dos nossos animais.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item border rounded">
-                            <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    Os animais são castrados e vacinados?
-                                </button>
-                            </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Sim! Todos os nossos animais são entregues castrados, vacinados e vermifugados. Também realizamos exames para garantir que estão saudáveis antes da adoção. Esse cuidado é essencial para o bem-estar do animal e tranquilidade do adotante.
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <footer class="py-5">
         <div class="container">
@@ -425,10 +357,10 @@
                 </div>
                 <nav class="mb-3 mb-md-0">
                     <ul class="d-flex flex-wrap justify-content-center list-unstyled mb-0 gap-3">
-                        <li><a href="#" class="text-white text-decoration-none">Home</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Sobre</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Contato</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Adotar</a></li>
+                        <li><a href="{{ Route('index') }}" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="{{ url('/#sobre') }}" class="text-white text-decoration-none">Sobre</a></li>
+                        <li><a href="{{ url('/#contato') }}" class="text-white text-decoration-none">Contato</a></li>
+                        <li><a href="{{ Route('adocao') }}" class="text-white text-decoration-none">Adotar</a></li>
                     </ul>
                 </nav>
             </div>
@@ -484,7 +416,7 @@
                     data: $(this).serialize(),
                     success: function(response) {
                         alert("Mensagem enviada com sucesso!");
-                        $(".formulario")[0].reset(); 
+                        $(".formulario")[0].reset();
                     },
                     error: function(xhr) {
                         alert("Erro ao enviar a mensagem!");

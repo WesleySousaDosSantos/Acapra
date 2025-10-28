@@ -25,7 +25,7 @@
         <h1 class="dashboard-title"><i class="fas fa-edit me-3"></i>Editar Dúvida</h1>
     </div>
 
-    <form class="tab-pane fade show" action="{{ Route('duvidas.update', $duvidas->id) }}" method="POST" id="animals">
+    <form class="tab-pane fade show" action="{{ Route('duvidas.update', $duvidas->id ) }}" method="POST" id="animals">
         @csrf
         <input type="hidden" name="id" value="{{ $duvidas->id }}">
 

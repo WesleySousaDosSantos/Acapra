@@ -264,9 +264,7 @@
                     </div>
                 </div>
 
-
             </div>
-
             <div class="form-actions">
                 <div class="progress-indicator">
                     <i class="fas fa-info-circle me-2"></i>
@@ -284,6 +282,5 @@
             </div>
         </div>
     </form>
-
 </div>
 @endsection

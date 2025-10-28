@@ -2,7 +2,16 @@
 
 @section('title', 'Formularios')
 
+@php
+    $activeTab = match($formularioselecionado->status ?? 'Pendente') {
+        'Aprovado' => 'forms',
+        'Rejeitado' => 'messages',
+        default => 'formulario-pedding'
+    };
+@endphp
+
 @section('content')
+
 <div class="main-content">
     <div class="dashboard-header">
         <h1 class="dashboard-title">Formulários de Adoção Recebidos</h1>
@@ -10,27 +19,33 @@
 
     <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="formulario-pedding-tab" data-bs-toggle="tab" data-bs-target="#formulario-pedding"
-                type="button" role="tab" aria-controls="formulario-pedding" aria-selected="true">
+            <button class="nav-link {{ $activeTab === 'formulario-pedding' ? 'active' : '' }}" id="formulario-pedding-tab"
+                data-bs-toggle="tab" data-bs-target="#formulario-pedding"
+                type="button" role="tab" aria-controls="formulario-pedding"
+                aria-selected="{{ $activeTab === 'formulario-pedding' ? 'true' : 'false' }}">
                 Pendente
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="forms-tab" data-bs-toggle="tab" data-bs-target="#forms"
-                type="button" role="tab" aria-controls="forms" aria-selected="false">
+            <button class="nav-link {{ $activeTab === 'forms' ? 'active' : '' }}" id="forms-tab"
+                data-bs-toggle="tab" data-bs-target="#forms"
+                type="button" role="tab" aria-controls="forms"
+                aria-selected="{{ $activeTab === 'forms' ? 'true' : 'false' }}">
                 Aprovado
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
-                type="button" role="tab" aria-controls="messages" aria-selected="false">
+            <button class="nav-link {{ $activeTab === 'messages' ? 'active' : '' }}" id="messages-tab"
+                data-bs-toggle="tab" data-bs-target="#messages"
+                type="button" role="tab" aria-controls="messages"
+                aria-selected="{{ $activeTab === 'messages' ? 'true' : 'false' }}">
                 Rejeitado
             </button>
         </li>
     </ul>
 
     <div class="tab-content mt-3" id="dashboardTabsContent">
-        <div class="tab-pane fade show active" id="formulario-pedding" role="tabpanel" aria-labelledby="formulario-pedding-tab">
+        <div class="tab-pane fade {{ $activeTab === 'formulario-pedding' ? 'show active' : '' }}" id="formulario-pedding" role="tabpanel" aria-labelledby="formulario-pedding-tab">
             <div class="content-card-message-formulario">
                 <div class="content-message-formulario">
                     @foreach ($pendentes as $formulario)
@@ -132,7 +147,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="forms" role="tabpanel" aria-labelledby="forms-tab">
+        <div class="tab-pane fade {{ $activeTab === 'forms' ? 'show active' : '' }}" id="forms" role="tabpanel" aria-labelledby="forms-tab">
             <div class="content-card-message-formulario">
                 <div class="content-message-formulario">
                     @foreach ($aprovados as $formulario)
@@ -234,7 +249,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="tab-pane fade {{ $activeTab === 'messages' ? 'show active' : '' }}" id="messages" role="tabpanel" aria-labelledby="messages-tab">
             <div class="content-card-message-formulario">
                 <div class="content-message-formulario">
                     @foreach ($rejeitados as $formulario)
@@ -340,7 +355,31 @@
 @endsection
 
 @section('js')
-<script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentId = "{{ $formularioselecionado->id ?? '' }}";
+        if (currentId) {
+            const el = document.querySelector(`[href$="/${currentId}"]`);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+
+        tabButtons.forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function (event) {
+                const targetId = event.target.getAttribute('data-bs-target');
+                const firstForm = document.querySelector(`${targetId} .adoption-form-preview`);
+
+                if (firstForm) {
+                    const firstLink = firstForm.getAttribute('href');
+                    if (firstLink) {
+                        window.location.href = firstLink;
+                    }
+                }
+            });
+        });
+    });
 </script>
+
 @endsection

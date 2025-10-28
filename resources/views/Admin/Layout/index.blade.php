@@ -59,11 +59,11 @@
 
                 <div class="sidebar-divider"></div>
 
-                <a href="#" class="sidebar-menu-item">
+                <a href="{{ Route('usuario') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'usuario' ? 'active' : '' }}">
                     <i class="fas fa-users"></i>
                     <span class="menu-text">Usuários</span>
                 </a>
-                <a href="#" class="sidebar-menu-item">
+                <a href="{{ Route('configuracao') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'configuracao' ? 'active' : '' }}">
                     <i class="fas fa-cog"></i>
                     <span class="menu-text">Configurações</span>
                 </a>

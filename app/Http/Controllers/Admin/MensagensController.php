@@ -12,7 +12,7 @@ class MensagensController extends Controller
     public function index()
     {
         $mensagens = Contato::orderBy('created_at', 'desc')->get();
-            $primeira = Contato::orderBy('created_at', 'desc')->first();
+        $primeira = Contato::orderBy('created_at', 'desc')->first();
 
         $mensagemSelecionada = $mensagens->first();
         return view('Admin.Mensagens.index', compact('mensagens', 'mensagemSelecionada'));

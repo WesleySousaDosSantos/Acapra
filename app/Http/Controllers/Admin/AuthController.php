@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 
 class AuthController extends Controller
@@ -91,24 +92,48 @@ class AuthController extends Controller
 
     public function usuario()
     {
-        return view('admin.Novo-usuario.index');
+        $usuarios = User::all()->map(function ($user) {
+            $user->data_cadastro = Carbon::parse($user->created_at)->format('d/m/Y');
+            return $user;
+        });
+
+        return view('Admin.Usuario.index', compact('usuarios'));
     }
 
     public function usuarioStore(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:120',
-            'email' => 'required|email|unique:users,email',
+            'nome' => 'required|string|max:120',
+            'email' => 'required|email|unique:usuarios,email',
+            'phone' => 'required|string',
             'password' => 'required|min:8|confirmed',
         ]);
 
         $user = new User();
-        $user->name = $request->name;
+        $user->nome = $request->nome;
         $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
+        $user->data_criacao = now();
 
         $user->save();
 
         return redirect()->route('usuario')->with('success', 'Usuário criado com sucesso!');
+    }
+
+
+    public function show($id)
+    {
+        $usuario = User::findOrFail($id);
+        return response()->json($usuario);
+    }
+
+
+    public function usuarioDelete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('usuario')->with('success', 'Usuário excluído com sucesso!');
     }
 }
