@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Configuracoe;
 use App\Models\Duvida;
 use App\Models\Formulario;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class ControllerHome extends Controller
     {
         $duvidas = Duvida::get();
         $animais = Animal::orderBy('nome', 'desc')->paginate(10);
-        return view('inicio.inicio', compact('duvidas', 'animais'));
+        $configuracoes = Configuracoe::get();
+        return view('inicio.inicio', compact('duvidas', 'animais', 'configuracoes'));
     }
 
     public function adocao()

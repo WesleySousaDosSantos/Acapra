@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="{{ asset('logo-acapra-reto.png') }}">
+
     <style>
         body {
             background-color: #f5f5f5;
@@ -21,7 +23,7 @@
         <div class="container py-3">
             <div class="d-flex justify-content-around align-items-center">
                 <a class="logo-placeholder" href="{{ Route('index') }}" style="color: white; text-decoration: none;">
-                    <i class="fas fa-paw"></i> ACAPRA
+                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
                 </a>
                 <nav>
                     <ul class="d-flex list-unstyled mb-0 gap-4 align-items-center">
@@ -41,7 +43,7 @@
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                 <div class="logo-placeholder text-white mb-3 mb-md-0">
-                    <i class="fas fa-paw"></i> ACAPRA
+                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
                 </div>
                 <nav class="mb-3 mb-md-0">
                     <ul class="d-flex flex-wrap justify-content-center list-unstyled mb-0 gap-3">
@@ -56,9 +58,24 @@
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
                 <p class="text-white mb-3 mb-md-0">© Acapra - Acapra 2025. Todos os direitos reservados.</p>
                 <div class="social-icons d-flex gap-3">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    @if($configuracaoGlobal?->socialFacebook)
+                    <a href="{{ $configuracaoGlobal->socialFacebook }}" class="social-icon" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    @endif
+                    @if($configuracaoGlobal?->socialTwitter)
+                    <a href="{{ $configuracaoGlobal->socialTwitter }}" class="social-icon" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    @endif
+                    @if($configuracaoGlobal?->socialInstagram)
+                    <a href="{{ $configuracaoGlobal->socialInstagram }}" class="social-icon" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    @endif
+                    @if ($configuracaoGlobal?->socialWhatsapp != '')
+                    <a href="{{ $configuracaoGlobal->socialWhatsapp }}" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    @endif
                 </div>
             </div>
         </div>

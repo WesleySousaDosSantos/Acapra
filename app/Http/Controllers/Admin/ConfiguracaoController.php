@@ -18,7 +18,7 @@ class ConfiguracaoController extends Controller
     {
         $config = Configuracoe::first();
 
-        $config->update($request->only([
+        $config->update([
             'orgName' => $request->orgName,
             'orgEmail' => $request->orgEmail,
             'orgPhone' => $request->orgPhone,
@@ -27,8 +27,7 @@ class ConfiguracaoController extends Controller
             'socialInstagram' => $request->socialInstagram ?: null,
             'socialTwitter' => $request->socialTwitter ?: null,
             'socialWhatsapp' => $request->socialWhatsapp ?: null,
-        ]));
-
+        ]);
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
             $requestLogo = $request->file('logo');

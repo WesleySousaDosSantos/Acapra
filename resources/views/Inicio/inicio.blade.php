@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="{{ asset('logo-acapra-reto.png') }}">
+
 </head>
 
 <body>
@@ -17,7 +19,7 @@
             <div class="container py-3">
                 <div class="d-flex justify-content-around align-items-center">
                     <a href="{{ Route('index') }}" class="logo-placeholder" style="text-decoration: none; color:white;">
-                        <i class="fas fa-paw"></i> ACAPRA
+                        <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
                     </a>
                     <nav>
                         <ul class="d-flex list-unstyled mb-0 gap-4 align-items-center">
@@ -45,7 +47,7 @@
                         chance. Faça a diferença, visite-nos.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3 mb-4">
-                        <a href="#" class="btn btn-save">
+                        <a href="{{ Route('adocao') }}" class="btn btn-save">
                             <p>Salvar uma pequena vida</p>
                         </a>
                         <a href="#" class="btn btn-outline-light">Adote um Animal</a>
@@ -158,7 +160,7 @@
     <section class="bg-light pt-5 text-center container-agora">
         <div class="container">
             <h2 class="display-5 fw-bold mb-4">O que está esperando?</h2>
-            <a href="href={{ Route('adocao') }}" class="btn btn-purple btn-lg mb-5">Adotar agora</a>
+                <a href="{{ Route('adocao') }}" class="btn btn-outline-light btn-lg">Adotar agora</a>
             <div class="dogs-image">
                 <img src="animaiss.png" alt="Acapra" class="animal">
             </div>
@@ -220,12 +222,12 @@
                     <div class="col-lg-4">
                         <div class="contact-info">
                             <h3>Informações de Contato</h3>
-
+                            @foreach ($configuracoes as $configuracoe)
                             <div class="contact-info-item">
                                 <i class="fas fa-phone-alt"></i>
                                 <div class="content">
                                     <h4>Telefone</h4>
-                                    <p>(11) 9876-5432<br>(11) 1234-5678</p>
+                                    <p>{{ $configuracoe->orgPhone }}</p>
                                 </div>
                             </div>
 
@@ -233,24 +235,26 @@
                                 <i class="fas fa-envelope"></i>
                                 <div class="content">
                                     <h4>Email</h4>
-                                    <p>contato@acapra.org<br>adocao@acapra.org</p>
+                                    <p>{{ $configuracoe->orgEmail }}</p>
                                 </div>
                             </div>
 
-                            <div class="contact-info-item">
-                                <i class="fas fa-clock"></i>
-                                <div class="content">
-                                    <h4>Horário de Funcionamento</h4>
-                                    <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 14h</p>
-                                </div>
-                            </div>
-
+                            <div class="contact-info-item"></div>
                             <div class="social-contact">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                @if ($configuracoe->socialFacebook != '')
+                                <a href="{{ $configuracoe->socialFacebook }}"><i class="fab fa-facebook-f"></i></a>
+                                @endif
+                                @if ($configuracoe->socialInstagram != '')
+                                <a href="{{ $configuracoe->socialInstagram }}"><i class="fab fa-instagram"></i></a>
+                                @endif
+                                @if ($configuracoe->socialTwitter != '')
+                                <a href="{{ $configuracoe->socialTwitter }}"><i class="fab fa-twitter"></i></a>
+                                @endif
+                                @if ($configuracoe->socialWhatsapp != '')
+                                <a href="{{ $configuracoe->socialWhatsapp }}"><i class="fab fa-whatsapp"></i></a>
+                                @endif
                             </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -262,7 +266,7 @@
                                 @csrf
 
                                 @if(session('success'))
-                                   <div class="alert alert-success">{{ session('success') }}</div>
+                                <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
 
                                 <div class="row">
@@ -353,7 +357,7 @@
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                 <div class="logo-placeholder text-white mb-3 mb-md-0">
-                    <i class="fas fa-paw"></i> ACAPRA
+                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
                 </div>
                 <nav class="mb-3 mb-md-0">
                     <ul class="d-flex flex-wrap justify-content-center list-unstyled mb-0 gap-3">
@@ -368,13 +372,55 @@
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
                 <p class="text-white mb-3 mb-md-0">© Acapra - Acapra 2025. Todos os direitos reservados.</p>
                 <div class="social-icons d-flex gap-3">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    @foreach ($configuracoes as $configuracoe)
+                    @if ($configuracoe->socialFacebook != '')
+                    <a href="{{ $configuracoe->socialFacebook }}" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    @endif
+                    @if ($configuracoe->socialInstagram != '')
+                    <a href="{{ $configuracoe->socialInstagram }}" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if ($configuracoe->socialTwitter != '')
+                    <a href="{{ $configuracoe->socialTwitter }}" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    @endif
+                    @if ($configuracoe->socialWhatsapp != '')
+                    <a href="{{ $configuracoe->socialWhatsapp }}" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    @endif
+                    @endforeach
+
                 </div>
             </div>
         </div>
     </footer>
+
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <div class="modal-body">
+                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <h4 class="fw-bold mb-2">Mensagem Enviada!</h4>
+                    <p class="text-muted">Sua mensagem foi enviada com sucesso. Entraremos em contato em breve!</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <div class="modal-body">
+                    <i class="fas fa-times-circle fa-4x text-danger mb-3"></i>
+                    <h4 class="fw-bold mb-2">Erro ao Enviar!</h4>
+                    <p class="text-muted">Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="jquery-3.7.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -415,11 +461,14 @@
                     method: "POST",
                     data: $(this).serialize(),
                     success: function(response) {
-                        alert("Mensagem enviada com sucesso!");
+                        $(".formulario")[0].reset();
+                        const modal = new bootstrap.Modal(document.getElementById('successModal'));
+                        modal.show();
                         $(".formulario")[0].reset();
                     },
-                    error: function(xhr) {
-                        alert("Erro ao enviar a mensagem!");
+                    error: function(xhr, status, error) {
+                        const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                        errorModal.show();
                     }
                 });
             });
