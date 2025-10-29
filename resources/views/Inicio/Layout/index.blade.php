@@ -21,9 +21,9 @@
 <body>
     <header style="background-color: rebeccapurple;">
         <div class="container py-3">
-            <div class="d-flex justify-content-around align-items-center">
+            <div class="d-flex justify-content-around align-items-center logo">
                 <a class="logo-placeholder" href="{{ Route('index') }}" style="color: white; text-decoration: none;">
-                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
+                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" class="imagem-logo">
                 </a>
                 <nav>
                     <ul class="d-flex list-unstyled mb-0 gap-4 align-items-center">
@@ -43,7 +43,7 @@
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                 <div class="logo-placeholder text-white mb-3 mb-md-0">
-                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
+                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" class="imagem-logo">
                 </div>
                 <nav class="mb-3 mb-md-0">
                     <ul class="d-flex flex-wrap justify-content-center list-unstyled mb-0 gap-3">
@@ -56,7 +56,7 @@
             </div>
             <hr>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
-                <p class="text-white mb-3 mb-md-0">© Acapra - Acapra 2025. Todos os direitos reservados.</p>
+                <p class="text-white mb-3 mb-md-0 direito">© Acapra - Acapra 2025. Todos os direitos reservados.</p>
                 <div class="social-icons d-flex gap-3">
                     @if($configuracaoGlobal?->socialFacebook)
                     <a href="{{ $configuracaoGlobal->socialFacebook }}" class="social-icon" target="_blank">

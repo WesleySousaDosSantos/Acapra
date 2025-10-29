@@ -17,9 +17,9 @@
     <section class="hero">
         <header>
             <div class="container py-3">
-                <div class="d-flex justify-content-around align-items-center">
+                <div class="d-flex justify-content-around align-items-center logo">
                     <a href="{{ Route('index') }}" class="logo-placeholder" style="text-decoration: none; color:white;">
-                        <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
+                        <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" class="imagem-logo" alt="Logo da ACAPRA">
                     </a>
                     <nav>
                         <ul class="d-flex list-unstyled mb-0 gap-4 align-items-center">
@@ -36,7 +36,6 @@
             <div class="header">
                 <div class="imagens">
                     <img src="dog.png" alt="Acapra" class="dog-header">
-                    <!-- <img src="pattern-2.png" alt="Acapra" class="pattern"> -->
                 </div>
 
                 <div class="container-info">
@@ -50,15 +49,19 @@
                         <a href="{{ Route('adocao') }}" class="btn btn-save">
                             <p>Salvar uma pequena vida</p>
                         </a>
-                        <a href="#" class="btn btn-outline-light">Adote um Animal</a>
+                        <a href="{{ Route('adocao') }}" class="btn btn-outline-light">Adote um Animal</a>
                     </div>
                     <div class="d-flex flex-column align-items-startcenter gap-3">
                         <p class="mb-0">Nossas outras redes:</p>
                         <span>
-                            <a href="#" class="text-white text-decoration-none"><i class="fab fa-instagram"></i>
-                                Instagram</a>
-                            <a href="#" class="text-white text-decoration-none"><i class="fab fa-facebook"></i>
-                                Facebook</a>
+                            @if ($configuracaoGlobal->socialInstagram != '')
+                            <a href="{{ $configuracaoGlobal->socialInstagram }}" class="text-white text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
+                            @endif
+
+                            @if ($configuracaoGlobal->socialFacebook != '')
+                            <a href="{{ $configuracaoGlobal->socialFacebook }}" class="text-white text-decoration-none"><i class="fab fa-facebook"></i> Facebook</a>
+                            @endif
+
                         </span>
                     </div>
                     <img src="pattern.png" alt="Acapra">
@@ -143,10 +146,9 @@
                 <div class="col-lg-7">
                     <h2 class="display-5 fw-bold mb-4">Quem somos?</h2>
                     <p class="mb-3">
-                        Fundada em 2005, a Acapra é um farol de esperança para animais de rua. Com a ajuda de
-                        voluntários dedicados, já ajudamos milhares de animais a encontrar lares afetuosos,
-                        proporcionando uma nova história para eles nas casas de suas famílias adotivas. Nosso
-                        compromisso é com o bem-estar de companhia.
+                        A ONG não tem vinculação política e atualmente todo trabalho é feito de forma voluntária. 
+                        Atuamos na realização de resgates e amparo de animais em situação de maus tratos, abandono ou vulnerabilidade.
+                        A ONG conta com o apoio da população para seguir com as atividades, e você pode acompanhar nosso trabalho pelo instagram - @acaprabrusquesc
                     </p>
                     <p class="tagline fst-italic">
                         Acapra - Transformando vidas por décadas.
@@ -160,7 +162,7 @@
     <section class="bg-light pt-5 text-center container-agora">
         <div class="container">
             <h2 class="display-5 fw-bold mb-4">O que está esperando?</h2>
-                <a href="{{ Route('adocao') }}" class="btn btn-outline-light btn-lg">Adotar agora</a>
+            <a href="{{ Route('adocao') }}" class="btn btn-outline-light btn-lg">Adotar agora</a>
             <div class="dogs-image">
                 <img src="animaiss.png" alt="Acapra" class="animal">
             </div>
@@ -177,13 +179,12 @@
         <div class="container">
             <h2 class="display-6 fw-bold text-center mb-5">Conheça alguns dos nossos animais</h2>
             <div class="position-relative">
-                <div class="d-flex align-items-center">
-                    <button class="slider-arrow prev me-3">
+                <div class="d-flex align-items-center animais-conheco">
+                    <button class="slider-arrow prev me-3 arrow-media">
                         <i class="fas fa-chevron-left"></i>
                     </button>
 
                     <div class="testimonial-slider d-flex overflow-auto">
-
                         @foreach ($animais as $animal)
                         <div class="testimonial-card bg-white p-4 rounded shadow-sm mx-2">
                             <img src="adoteee.png" class="adoteAnimal mx-auto d-block mb-3"
@@ -194,7 +195,7 @@
                         @endforeach
                     </div>
 
-                    <button class="slider-arrow next ms-3">
+                    <button class="slider-arrow next ms-3 arrow-media">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -357,7 +358,7 @@
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                 <div class="logo-placeholder text-white mb-3 mb-md-0">
-                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" style="width: 12vw;">
+                    <img src="{{ asset('logos/' . $configuracaoGlobal->logo) }}" alt="Logo da ACAPRA" class="imagem-logo">
                 </div>
                 <nav class="mb-3 mb-md-0">
                     <ul class="d-flex flex-wrap justify-content-center list-unstyled mb-0 gap-3">
@@ -370,7 +371,7 @@
             </div>
             <hr>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
-                <p class="text-white mb-3 mb-md-0">© Acapra - Acapra 2025. Todos os direitos reservados.</p>
+                <p class="text-white mb-3 mb-md-0 direito">© Acapra - Acapra 2025. Todos os direitos reservados.</p>
                 <div class="social-icons d-flex gap-3">
                     @foreach ($configuracoes as $configuracoe)
                     @if ($configuracoe->socialFacebook != '')

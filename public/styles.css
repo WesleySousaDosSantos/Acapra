@@ -26,7 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: white;
-
+    z-index: 3;
 }
 
 .btn-save p {
@@ -35,6 +35,11 @@ body {
     margin-top: 0;
     margin-bottom: 0;
     font-weight: 600;
+}
+
+
+.btn-outline-light {
+    z-index: 1;
 }
 
 nav a {
@@ -226,7 +231,6 @@ nav a {
 
 .testimonial-card {
     min-width: 332px;
-    /* flex: 0 0 auto;  aqui ele vai deixar 2 quadros, estou na dúvida se uso ou não descomenta para testa*/
 }
 
 .adoteAnimal {
@@ -900,9 +904,76 @@ hr {
     color: #6c757d;
 }
 
+.imagem-logo {
+    width: 12vw;
+}
+
 @media (max-width: 767.98px) {
     .form-body {
         padding: 20px;
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imagem-logo {
+        width: 35vw;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dog-header {
+        display: none;
+    }
+
+    .container-info h1 {
+        width: 90%;
+        font-size: 1.5em;
+    }
+
+    .container-info {
+        padding: 25px;
+    }
+
+    .description {
+        width: 100%;
+    }
+
+    .container-geral-header {
+        height: 80%;
+    }
+
+    .bottom-dog img {
+        width: 355px;
+    }
+
+    .direito {
+        text-align: center;
+    }
+
+    .animais-conheco {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .arrow-media {
+        display: none;
+    }
+
+    .testimonial-slider {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-agora {
+        display: none;
     }
 }
 
