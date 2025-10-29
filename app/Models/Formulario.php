@@ -32,7 +32,8 @@ class Formulario extends Model
         'rgPhoto',
         'incomeProof',
         'otherPetsPhotos',
-        'fencePhoto'
+        'fencePhoto',
+        'locationPhoto'
     ];
 
     public function animal()

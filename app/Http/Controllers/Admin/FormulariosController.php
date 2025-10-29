@@ -58,7 +58,11 @@ class FormulariosController extends Controller
         $formulario->status = $request->status;
         $formulario->save();
 
-        return redirect()->route('formularios')
-            ->with('success', 'Status atualizado com sucesso!');
+        if ($formulario->status === 'Aprovado' && $formulario->animal) {
+            $formulario->animal->status = 'adotado';
+            $formulario->animal->save();
+        }
+
+        return redirect()->back()->with('success', 'Status atualizado com sucesso!');
     }
 }

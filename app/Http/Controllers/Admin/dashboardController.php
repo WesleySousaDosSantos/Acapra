@@ -31,11 +31,11 @@ class dashboardController extends Controller
         $mensagemSelecionada = $mensagens->first();
 
         return view('Admin.Dashboard.index', compact(
-            'animais', 
-            'pendentes', 
-            'formularioselecionado', 
-            'mensagens', 
-            'mensagemSelecionada', 
+            'animais',
+            'pendentes',
+            'formularioselecionado',
+            'mensagens',
+            'mensagemSelecionada',
             'mesagemhoje',
             'formulariopendetes',
             'animaldisponivel'
@@ -45,7 +45,6 @@ class dashboardController extends Controller
     public function formularioshow($id)
     {
         $animais = Animal::paginate(7);
-
         $pendentes = Formulario::with('animal')
             ->where('status', 'Pendente')
             ->orderBy('created_at', 'desc')
@@ -53,34 +52,52 @@ class dashboardController extends Controller
 
         $formularioselecionado = Formulario::with('animal')->findOrFail($id);
 
-        return view('Admin.Dashboard.index', compact('animais', 'pendentes', 'formularioselecionado'));
-    }
-
-
-    public function contatoshow($id)
-    {
-        $animais = Animal::paginate(7);
-
-        $pendentes = Formulario::with('animal')
-            ->where('status', 'Pendente')
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $formularioselecionado = $pendentes->first();
-
+        $formulariopendetes = Formulario::where('status', 'Pendente')->count();
+        $animaldisponivel = Animal::where('status', 'disponivel')->count();
+        $mesagemhoje = Contato::whereDate('created_at', Carbon::today())->count();
         $mensagens = Contato::orderBy('created_at', 'desc')->get();
-        $mensagemSelecionada = Contato::findOrFail($id);
+        $mensagemSelecionada = null;
 
         return view('Admin.Dashboard.index', compact(
             'animais',
             'pendentes',
             'formularioselecionado',
+            'formulariopendetes',
+            'animaldisponivel',
+            'mesagemhoje',
             'mensagens',
             'mensagemSelecionada'
         ));
     }
 
 
+    public function contatoshow($id)
+    {
+        $animais = Animal::paginate(7);
+        $pendentes = Formulario::with('animal')
+            ->where('status', 'Pendente')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $formularioselecionado = $pendentes->first();
+        $mensagens = Contato::orderBy('created_at', 'desc')->get();
+        $mensagemSelecionada = Contato::findOrFail($id);
+        $mesagemhoje = Contato::whereDate('created_at', Carbon::today())->count();
+
+        $formulariopendetes = Formulario::where('status', 'Pendente')->count();
+        $animaldisponivel = Animal::where('status', 'disponivel')->count();
+
+        return view('Admin.Dashboard.index', compact(
+            'animais',
+            'pendentes',
+            'formularioselecionado',
+            'mensagens',
+            'mensagemSelecionada',
+            'formulariopendetes',
+            'animaldisponivel',
+            'mesagemhoje'
+        ));
+    }
 
     public function animalcreate()
     {

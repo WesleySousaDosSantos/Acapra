@@ -1,13 +1,12 @@
 @extends('Admin.Layout.index')
-
 @section('title', 'Formularios')
 
 @php
-    $activeTab = match($formularioselecionado->status ?? 'Pendente') {
-        'Aprovado' => 'forms',
-        'Rejeitado' => 'messages',
-        default => 'formulario-pedding'
-    };
+$activeTab = match($formularioselecionado->status ?? 'Pendente') {
+'Aprovado' => 'forms',
+'Rejeitado' => 'messages',
+default => 'formulario-pedding'
+};
 @endphp
 
 @section('content')
@@ -19,30 +18,48 @@
 
     <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link {{ $activeTab === 'formulario-pedding' ? 'active' : '' }}" id="formulario-pedding-tab"
-                data-bs-toggle="tab" data-bs-target="#formulario-pedding"
-                type="button" role="tab" aria-controls="formulario-pedding"
-                aria-selected="{{ $activeTab === 'formulario-pedding' ? 'true' : 'false' }}">
+            <button class="nav-link {{ $activeTab === 'formulario-pedding' ? 'active' : '' }}"
+                id="formulario-pedding-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#formulario-pedding"
+                type="button"
+                role="tab"
+                aria-controls="formulario-pedding"
+                aria-selected="{{ $activeTab === 'formulario-pedding' ? 'true' : 'false' }}"
+                @if($pendentes->isEmpty()) disabled @endif>
                 Pendente
             </button>
         </li>
+
         <li class="nav-item" role="presentation">
-            <button class="nav-link {{ $activeTab === 'forms' ? 'active' : '' }}" id="forms-tab"
-                data-bs-toggle="tab" data-bs-target="#forms"
-                type="button" role="tab" aria-controls="forms"
-                aria-selected="{{ $activeTab === 'forms' ? 'true' : 'false' }}">
+            <button class="nav-link {{ $activeTab === 'forms' ? 'active' : '' }}"
+                id="forms-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#forms"
+                type="button"
+                role="tab"
+                aria-controls="forms"
+                aria-selected="{{ $activeTab === 'forms' ? 'true' : 'false' }}"
+                @if($aprovados->isEmpty()) disabled @endif>
                 Aprovado
             </button>
         </li>
+
         <li class="nav-item" role="presentation">
-            <button class="nav-link {{ $activeTab === 'messages' ? 'active' : '' }}" id="messages-tab"
-                data-bs-toggle="tab" data-bs-target="#messages"
-                type="button" role="tab" aria-controls="messages"
-                aria-selected="{{ $activeTab === 'messages' ? 'true' : 'false' }}">
+            <button class="nav-link {{ $activeTab === 'messages' ? 'active' : '' }}"
+                id="messages-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#messages"
+                type="button"
+                role="tab"
+                aria-controls="messages"
+                aria-selected="{{ $activeTab === 'messages' ? 'true' : 'false' }}"
+                @if($rejeitados->isEmpty()) disabled @endif>
                 Rejeitado
             </button>
         </li>
     </ul>
+
 
     <div class="tab-content mt-3" id="dashboardTabsContent">
         <div class="tab-pane fade {{ $activeTab === 'formulario-pedding' ? 'show active' : '' }}" id="formulario-pedding" role="tabpanel" aria-labelledby="formulario-pedding-tab">
@@ -98,6 +115,27 @@
                             </div>
                         </div>
 
+
+                        <div class="mb-4">
+                            <h5 class="section-title">
+                                <i class="fas fa-file-alt me-2"></i>Documentos Enviados
+                            </h5>
+                            <div class="photo-gallery">
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->rgPhoto) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->rgPhoto ) }}" alt="RG">
+                                        <div class="photo-label">Foto do RG</div>
+                                    </a>
+                                </div>
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->incomeProof ) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->incomeProof ) }}" alt="Comprovante de Renda">
+                                        <div class="photo-label">Comprovante de Renda</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-4">
                             <h5 class="mb-3">Informações de Residência</h5>
                             <p><strong>Endereço:</strong> {{ $formularioselecionado->address }}</p>
@@ -107,6 +145,31 @@
                             <p><strong>Todos Concordam com a Adoção:</strong> {{$formularioselecionado->familyAgreement }}</p>
                         </div>
 
+                        <div class="mt-3">
+                            <h5 class="section-title">
+                                <i class="fas fa-home me-2"></i>Fotos do Local
+                            </h5>
+                            <div class="photo-gallery">
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->locationPhoto ) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->locationPhoto ) }}" alt="Local do Animal">
+                                        <div class="photo-label">Local onde o animal irá ficar</div>
+                                    </a>
+                                </div>
+
+                                @if($formularioselecionado->fencePhoto)
+                                @foreach(json_decode($formularioselecionado->fencePhoto, true) as $index => $photo)
+                                <div class="photo-item" id="photo-{{ $index }}">
+                                    <a href="{{ asset('Imagens_cercas/' . $photo) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_cercas/' . $photo) }}" alt="Telas de Proteção {{ $index + 1 }}">
+                                        <div class="photo-label">Telas de Proteção</div>
+                                    </a>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
+
                         @if ($formularioselecionado->hasOtherPets == "Sim")
                         <div class="mb-4">
                             <h5 class="mb-3">Informações sobre Outros Animais</h5>
@@ -114,6 +177,26 @@
                             <p><strong>Quais:</strong> {{ $formularioselecionado->otherPets }}</p>
                             <p><strong>São Castrados e Vacinados:</strong> {{$formularioselecionado->otherPetsVaccinated }}</p>
                             <p><strong>Concorda com Castração e Vacinação:</strong> {{ $formularioselecionado->agreeVaccination }}</p>
+
+                            <div class="mt-3">
+                                <h5 class="section-title">
+                                    <i class="fas fa-paw me-2"></i>Fotos dos Outros Animais
+                                </h5>
+                                <div class="photo-gallery">
+
+
+                                    @if($formularioselecionado->otherPetsPhotos)
+                                    @foreach(json_decode($formularioselecionado->otherPetsPhotos, true) as $index => $photo)
+                                    <div class="photo-item" id="other-pet-{{ $index }}">
+                                        <a href="{{ asset('Imagens_outros_animais/' . $photo) }}" target="_blank">
+                                            <img src="{{ asset('Imagens_outros_animais/' . $photo) }}" alt="Outro Animal {{ $index + 1 }}">
+                                            <div class="photo-label">Outro Animal {{ $index + 1 }}</div>
+                                        </a>
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         @endif
 
@@ -200,6 +283,27 @@
                             </div>
                         </div>
 
+
+                        <div class="mb-4">
+                            <h5 class="section-title">
+                                <i class="fas fa-file-alt me-2"></i>Documentos Enviados
+                            </h5>
+                            <div class="photo-gallery">
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->rgPhoto) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->rgPhoto ) }}" alt="RG">
+                                        <div class="photo-label">Foto do RG</div>
+                                    </a>
+                                </div>
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->incomeProof ) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->incomeProof ) }}" alt="Comprovante de Renda">
+                                        <div class="photo-label">Comprovante de Renda</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-4">
                             <h5 class="mb-3">Informações de Residência</h5>
                             <p><strong>Endereço:</strong> {{ $formularioselecionado->address }}</p>
@@ -209,6 +313,31 @@
                             <p><strong>Todos Concordam com a Adoção:</strong> {{$formularioselecionado->familyAgreement }}</p>
                         </div>
 
+                        <div class="mt-3">
+                            <h5 class="section-title">
+                                <i class="fas fa-home me-2"></i>Fotos do Local
+                            </h5>
+                            <div class="photo-gallery">
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->locationPhoto ) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->locationPhoto ) }}" alt="Local do Animal">
+                                        <div class="photo-label">Local onde o animal irá ficar</div>
+                                    </a>
+                                </div>
+
+                                @if($formularioselecionado->fencePhoto)
+                                @foreach(json_decode($formularioselecionado->fencePhoto, true) as $index => $photo)
+                                <div class="photo-item" id="photo-{{ $index }}">
+                                    <a href="{{ asset('Imagens_cercas/' . $photo) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_cercas/' . $photo) }}" alt="Telas de Proteção {{ $index + 1 }}">
+                                        <div class="photo-label">Telas de Proteção</div>
+                                    </a>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
+
                         @if ($formularioselecionado->hasOtherPets == "Sim")
                         <div class="mb-4">
                             <h5 class="mb-3">Informações sobre Outros Animais</h5>
@@ -216,6 +345,24 @@
                             <p><strong>Quais:</strong> {{ $formularioselecionado->otherPets }}</p>
                             <p><strong>São Castrados e Vacinados:</strong> {{$formularioselecionado->otherPetsVaccinated }}</p>
                             <p><strong>Concorda com Castração e Vacinação:</strong> {{ $formularioselecionado->agreeVaccination }}</p>
+
+                            <div class="mt-3">
+                                <h5 class="section-title">
+                                    <i class="fas fa-paw me-2"></i>Fotos dos Outros Animais
+                                </h5>
+                                <div class="photo-gallery">
+                                    @if($formularioselecionado->otherPetsPhotos)
+                                    @foreach(json_decode($formularioselecionado->otherPetsPhotos, true) as $index => $photo)
+                                    <div class="photo-item" id="other-pet-{{ $index }}">
+                                        <a href="{{ asset('Imagens_outros_animais/' . $photo) }}" target="_blank">
+                                            <img src="{{ asset('Imagens_outros_animais/' . $photo) }}" alt="Outro Animal {{ $index + 1 }}">
+                                            <div class="photo-label">Outro Animal {{ $index + 1 }}</div>
+                                        </a>
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         @endif
 
@@ -231,14 +378,6 @@
                             </p>
                         </div>
 
-                        <div class="d-flex justify-content-end gap-2">
-                            <button class="btn btn-outline-danger" name="status" type="submit" value="Rejeitado">
-                                <i class="fas fa-times me-2"></i> Rejeitar
-                            </button>
-                            <button class="btn btn-success" type="submit" name="status" value="Aprovado">
-                                <i class="fas fa-check me-2"></i> Aprovar
-                            </button>
-                        </div>
                     </div>
                 </form>
                 @else
@@ -266,7 +405,6 @@
                     </a>
                     @endforeach
                 </div>
-
                 @if($formularioselecionado)
                 <form class="mensagemSelecionadaFormulario" style="overflow-y: auto;"
                     action="{{ Route('formularios.update', $formularioselecionado->id) }}"
@@ -302,6 +440,27 @@
                             </div>
                         </div>
 
+
+                        <div class="mb-4">
+                            <h5 class="section-title">
+                                <i class="fas fa-file-alt me-2"></i>Documentos Enviados
+                            </h5>
+                            <div class="photo-gallery">
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->rgPhoto) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->rgPhoto ) }}" alt="RG">
+                                        <div class="photo-label">Foto do RG</div>
+                                    </a>
+                                </div>
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->incomeProof ) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->incomeProof ) }}" alt="Comprovante de Renda">
+                                        <div class="photo-label">Comprovante de Renda</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-4">
                             <h5 class="mb-3">Informações de Residência</h5>
                             <p><strong>Endereço:</strong> {{ $formularioselecionado->address }}</p>
@@ -311,6 +470,31 @@
                             <p><strong>Todos Concordam com a Adoção:</strong> {{$formularioselecionado->familyAgreement }}</p>
                         </div>
 
+                        <div class="mt-3">
+                            <h5 class="section-title">
+                                <i class="fas fa-home me-2"></i>Fotos do Local
+                            </h5>
+                            <div class="photo-gallery">
+                                <div class="photo-item">
+                                    <a href="{{ asset('Imagens_formulario/' . $formularioselecionado->locationPhoto ) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_formulario/' . $formularioselecionado->locationPhoto ) }}" alt="Local do Animal">
+                                        <div class="photo-label">Local onde o animal irá ficar</div>
+                                    </a>
+                                </div>
+
+                                @if($formularioselecionado->fencePhoto)
+                                @foreach(json_decode($formularioselecionado->fencePhoto, true) as $index => $photo)
+                                <div class="photo-item" id="photo-{{ $index }}">
+                                    <a href="{{ asset('Imagens_cercas/' . $photo) }}" target="_blank">
+                                        <img src="{{ asset('Imagens_cercas/' . $photo) }}" alt="Telas de Proteção {{ $index + 1 }}">
+                                        <div class="photo-label">Telas de Proteção</div>
+                                    </a>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
+
                         @if ($formularioselecionado->hasOtherPets == "Sim")
                         <div class="mb-4">
                             <h5 class="mb-3">Informações sobre Outros Animais</h5>
@@ -318,6 +502,27 @@
                             <p><strong>Quais:</strong> {{ $formularioselecionado->otherPets }}</p>
                             <p><strong>São Castrados e Vacinados:</strong> {{$formularioselecionado->otherPetsVaccinated }}</p>
                             <p><strong>Concorda com Castração e Vacinação:</strong> {{ $formularioselecionado->agreeVaccination }}</p>
+
+                            <div class="mt-3">
+                                <h5 class="section-title">
+                                    <i class="fas fa-paw me-2"></i>Fotos dos Outros Animais
+                                </h5>
+                                <div class="photo-gallery">
+
+
+                                    @if($formularioselecionado->otherPetsPhotos)
+                                    @foreach(json_decode($formularioselecionado->otherPetsPhotos, true) as $index => $photo)
+                                    <div class="photo-item" id="other-pet-{{ $index }}">
+                                        <a href="{{ asset('Imagens_outros_animais/' . $photo) }}" target="_blank">
+                                            <img src="{{ asset('Imagens_outros_animais/' . $photo) }}" alt="Outro Animal {{ $index + 1 }}">
+                                            <div class="photo-label">Outro Animal {{ $index + 1 }}</div>
+                                        </a>
+                                    </div>
+                                    @endforeach
+                                    @endif
+
+                                </div>
+                            </div>
                         </div>
                         @endif
 
@@ -331,15 +536,6 @@
                                 <i class="fas {{ $formularioselecionado->aceita_visitas == "Sim" ? 'fa-check-circle text-success' :  'fa-times-circle text-danger' }}  me-2"></i>
                                 Concordou em receber visitas de acompanhamento
                             </p>
-                        </div>
-
-                        <div class="d-flex justify-content-end gap-2">
-                            <button class="btn btn-outline-danger" name="status" type="submit" value="Rejeitado">
-                                <i class="fas fa-times me-2"></i> Rejeitar
-                            </button>
-                            <button class="btn btn-success" type="submit" name="status" value="Aprovado">
-                                <i class="fas fa-check me-2"></i> Aprovar
-                            </button>
                         </div>
                     </div>
                 </form>
@@ -355,19 +551,21 @@
 @endsection
 
 @section('js')
-
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const currentId = "{{ $formularioselecionado->id ?? '' }}";
         if (currentId) {
             const el = document.querySelector(`[href$="/${currentId}"]`);
-            if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+            if (el) el.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
         }
 
         const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
 
         tabButtons.forEach(tab => {
-            tab.addEventListener('shown.bs.tab', function (event) {
+            tab.addEventListener('shown.bs.tab', function(event) {
                 const targetId = event.target.getAttribute('data-bs-target');
                 const firstForm = document.querySelector(`${targetId} .adoption-form-preview`);
 
@@ -380,6 +578,7 @@
             });
         });
     });
-</script>
 
+    document.querySelector('.forms')
+</script>
 @endsection

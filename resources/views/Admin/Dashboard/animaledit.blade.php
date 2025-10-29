@@ -271,7 +271,7 @@
                     Preencha todos os campos obrigatórios (*)
                 </div>
                 <div>
-                    <a href="{{ Route('animais') }}" type="button" class="btn btn-outline-secondary me-3">
+                    <a href="{{ Route('dashboard') }}" type="button" class="btn btn-outline-secondary me-3">
                         <i class="fas fa-arrow-left me-2"></i>Voltar
                     </a>
 

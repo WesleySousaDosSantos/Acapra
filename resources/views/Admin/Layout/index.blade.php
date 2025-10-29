@@ -29,8 +29,10 @@
             </div>
 
             <div class="sidebar-menu">
-
-                <a href="{{ Route('dashboard') }}" class="sidebar-menu-item {{ Route::currentRouteName() === 'dashboard' ? 'active' : '' }}">
+                @php
+                   $dashboardativo = in_array(Route::currentRouteName(), ['dashboard', 'dashboard.animalCreate', 'dashboard.animalEditar', 'dashboard.formulario.show', 'dashboard.contato.show'])
+                @endphp
+                <a href="{{ Route('dashboard') }}" class="sidebar-menu-item {{ $dashboardativo ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt"></i>
                     <span class="menu-text">Dashboard</span>
                 </a>
@@ -39,7 +41,7 @@
                     <span class="menu-text">Animais</span>
                 </a>
                 @php
-                $formularioativo = in_array(Route::currentRouteName(), ['formularios', 'formularios.show'])
+                  $formularioativo = in_array(Route::currentRouteName(), ['formularios', 'formularios.show'])
                 @endphp
                 <a href="{{ Route('formularios') }}" class="sidebar-menu-item {{ $formularioativo ? 'active' : '' }}">
                     <i class="fas fa-file-alt"></i>
@@ -50,7 +52,7 @@
                     <span class="menu-text">Dúvidas</span>
                 </a>
                 @php
-                $mensagemativa = in_array(Route::currentRouteName(), ['mensagens', 'mensagens.show'])
+                   $mensagemativa = in_array(Route::currentRouteName(), ['mensagens', 'mensagens.show'])
                 @endphp
                 <a href="{{ Route('mensagens') }}" class="sidebar-menu-item {{ $mensagemativa ? 'active' : '' }}">
                     <i class="fas fa-envelope"></i>

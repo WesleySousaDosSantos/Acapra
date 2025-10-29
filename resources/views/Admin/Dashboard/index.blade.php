@@ -248,8 +248,8 @@
                         <a id="mensagem-{{ $mensagem->id }}"
                             href="{{ route('dashboard.contato.show', $mensagem->id) }}"
                             class="border-end card-message"
-                            style="text-decoration: none;">
-                            <div class="message-preview {{ $mensagem->id ==  $mensagemSelecionada->id ? 'unread' : ''}}">
+                            style="text-decoration: none; width: 24vw;">
+                            <div class="message-preview {{ $mensagem->id ==  $mensagemSelecionada?->id ? 'unread' : ''}}">
                                 <div class="sender-info">
                                     <div class="sender-name">
                                         {{ $mensagem->name }}
@@ -293,12 +293,12 @@
                         </div>
                         @endif
                         <div class="message-actions">
-                            <form id="delete-form-{{ $mensagemSelecionada->id }}"
-                                action={{ route('mensagens.delete', $mensagemSelecionada->id) }}
+                            <form id="delete-form-{{ $mensagemSelecionada?->id ?? '' }}"
+                                action="{{ $mensagemSelecionada ? route('mensagens.delete', $mensagemSelecionada->id) : '#' }}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button data-id={{ $mensagemSelecionada->id }} class="btn btn-outline-danger delete">
+                                <button data-id={{ $mensagemSelecionada?->id }} class="btn btn-outline-danger delete">
                                     <i class="fas fa-trash me-2"></i> Excluir
                                 </button>
                             </form>
@@ -336,14 +336,13 @@
             });
         });
 
-        const selectedForm = document.querySelector('.mensagemSelecionadaFormulario');
-        if (selectedForm) {
-            setTimeout(() => {
-                selectedForm.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            }, 300);
+        const currentId = "{{ $mensagemSelecionada->id ?? '' }}";
+        if (currentId) {
+            const el = document.querySelector(`[href$="/${currentId}"]`);
+            if (el) el.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
         }
     });
 
@@ -370,16 +369,6 @@
                 }
             });
         });
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const currentId = "{{ $mensagemSelecionada->id ?? '' }}";
-        if (currentId) {
-            const el = document.getElementById("mensagem-" + currentId);
-            if (el) {
-                el.scrollIntoView();
-            }
-        }
     });
 </script>
 @endsection

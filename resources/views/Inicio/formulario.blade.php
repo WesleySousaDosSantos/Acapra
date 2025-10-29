@@ -142,9 +142,8 @@
 
                             <div class="form-group">
                                 <label for="locationPhoto" class="form-label required-field">Foto do Local onde o Animal Irá Ficar</label>
-                                <input type="file" class="form-control file-upload-input" id="locationPhoto" accept="image/*" multiple required>
+                                <input type="file" class="form-control file-upload-input" name="locationPhoto" id="locationPhoto" accept="image/*" multiple required>
                                 <div class="form-text">Envie fotos do terreno, casa, quintal, canil ou local onde o animal ficará.</div>
-                                <div class="file-preview" id="locationPhotoPreview"></div>
                             </div>
 
                             @if ($animais->especie == 'gato')
@@ -248,7 +247,7 @@
 
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="termsAgreement" value="sim" required>
+                                    <input class="form-check-input" type="checkbox" name="aceita_termos" id="termsAgreement" value="sim" required>
                                     <label class="form-check-label" for="termsAgreement">
                                         Declaro que li e concordo com os <a href="#" class="text-decoration-none">termos de adoção</a> da ACAPRA.
                                     </label>
@@ -257,7 +256,7 @@
 
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="followUpAgreement" value="sim" required>
+                                    <input class="form-check-input" type="checkbox" name="aceita_visitas" id="followUpAgreement" value="sim">
                                     <label class="form-check-label" for="followUpAgreement">
                                         Concordo em receber visitas de acompanhamento da ACAPRA após a adoção.
                                     </label>

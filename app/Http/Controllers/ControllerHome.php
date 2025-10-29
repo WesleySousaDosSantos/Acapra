@@ -18,7 +18,7 @@ class ControllerHome extends Controller
 
     public function adocao()
     {
-        $animais = Animal::orderBy('nome', 'desc')->get();
+        $animais = Animal::orderBy('nome', 'desc')->where('status', 'disponivel')->get();
         return view('inicio.adocao', compact('animais'));
     }
 
@@ -64,6 +64,13 @@ class ControllerHome extends Controller
             $imageName = md5($file->getClientOriginalName() . time()) . '.' . $file->extension();
             $file->move(public_path('Imagens_formulario'), $imageName);
             $formulario->incomeProof = $imageName;
+        }
+
+        if ($request->hasFile('locationPhoto') && $request->file('locationPhoto')->isValid()) {
+            $file = $request->file('locationPhoto');
+            $imageName = md5($file->getClientOriginalName() . time()) . '.' . $file->extension();
+            $file->move(public_path('Imagens_formulario'), $imageName);
+            $formulario->locationPhoto = $imageName;
         }
 
         if ($request->hasFile('otherPetsPhotos')) {
