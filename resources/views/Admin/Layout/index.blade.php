@@ -73,7 +73,7 @@
             <div class="sidebar-footer">
                 <div class="user-info">
                     <div class="user-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="{{ asset('logo-acapra-reto.png') }}" alt="acapra" style="width: 40px; height: 40px; border-radius: 20px"/>
                     </div>
                     <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="margin: 0;">
                         @csrf

@@ -146,7 +146,7 @@
                 <div class="col-lg-7">
                     <h2 class="display-5 fw-bold mb-4">Quem somos?</h2>
                     <p class="mb-3">
-                        A ONG não tem vinculação política e atualmente todo trabalho é feito de forma voluntária. 
+                        A ONG não tem vinculação política e atualmente todo trabalho é feito de forma voluntária.
                         Atuamos na realização de resgates e amparo de animais em situação de maus tratos, abandono ou vulnerabilidade.
                         A ONG conta com o apoio da população para seguir com as atividades, e você pode acompanhar nosso trabalho pelo instagram - @acaprabrusquesc
                     </p>
@@ -319,6 +319,72 @@
         </div>
     </div>
 
+    <section class="donation py-5 text-center">
+        <div class="container">
+            <h2 class="display-5 fw-bold mb-4">Quer fazer uma doação?</h2>
+            <p class="lead mb-5">Sua contribuição ajuda a salvar vidas e cuidar dos nossos animais</p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="donation-card bg-white text-dark rounded-4 p-4 shadow-lg">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-4 mb-md-0">
+                                <div class="pix-info">
+                                    <i class="fas fa-qrcode fa-3x mb-3" style="color: var(--purple-primary);"></i>
+                                    <h4 class="fw-bold mb-3">Doe via PIX</h4>
+                                    <p class="text-muted mb-3">Escaneie o QR Code ou copie a chave PIX abaixo:</p>
+
+                                    <div class="pix-key-container bg-light p-3 rounded mb-3">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="pix-key fw-bold" id="pixKey">03.772.251.0001-82</span>
+                                            <button class="btn btn-sm btn-purple" onclick="copyPixKey()" title="Copiar chave PIX">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <small class="text-muted d-block mb-3">
+                                        <i class="fas fa-info-circle"></i> Qualquer valor faz a diferença!
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="qr-code-placeholder bg-light rounded p-4 d-flex align-items-center justify-content-center" style="min-height: 250px;">
+                                    <div class="text-center">
+                                        <img src="{{ asset('qrcode-pix.png') }}" alt="pix acapra" />
+                                        <p class="text-muted mb-0">QR Code PIX</p>
+                                        <small class="text-muted">Escaneie para doar</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="donation-stats mt-4 pt-4 border-top">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <i class="fas fa-heart text-danger fa-2x mb-2"></i>
+                                    <p class="mb-0 fw-bold">500+</p>
+                                    <small class="text-muted">Animais Resgatados</small>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fas fa-home" style="color: var(--purple-primary); font-size: 2rem;" class="mb-2"></i>
+                                    <p class="mb-0 fw-bold">300+</p>
+                                    <small class="text-muted">Adoções Realizadas</small>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fas fa-users text-success fa-2x mb-2"></i>
+                                    <p class="mb-0 fw-bold">50+</p>
+                                    <small class="text-muted">Voluntários Ativos</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold text-white">Perguntas Frequentes</h2>
@@ -352,7 +418,6 @@
             </div>
         </div>
     </section>
-
 
     <footer class="py-5">
         <div class="container">
@@ -400,6 +465,21 @@
                     <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
                     <h4 class="fw-bold mb-2">Mensagem Enviada!</h4>
                     <p class="text-muted">Sua mensagem foi enviada com sucesso. Entraremos em contato em breve!</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="pixmodal" tabindex="-1" aria-labelledby="pixsuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <div class="modal-body">
+                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <h4 class="fw-bold mb-2">Pix copiado com sucesso</h4>
+                    <p class="text-muted"> Qualquer valor faz a diferença!</p>
                 </div>
                 <div class="modal-footer justify-content-center border-0">
                     <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">Fechar</button>
@@ -474,6 +554,26 @@
                 });
             });
         });
+
+        function copyPixKey() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(pixKey).then(function() {
+                const btn = event.target.closest('button');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-purple');
+
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-purple');
+                }, 2000);
+            }).catch(function(err) {
+                const pixmodal = new bootstrap.Modal(document.getElementById('pixmodal'));
+                pixmodal.show();
+            });
+        }
     </script>
 
 </body>

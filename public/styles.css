@@ -84,7 +84,7 @@ nav a {
 
 .dog-header {
     width: 450px;
-    height: 88vh;
+    height: 89vh;
 }
 
 .logo-placeholder {
@@ -999,5 +999,48 @@ hr {
 
     .contact-form-container {
         margin-top: -20px;
+    }
+}
+
+/* Added styles for PIX donation section */
+.donation-card {
+    transition: transform 0.3s ease;
+}
+
+.donation-card:hover {
+    transform: translateY(-5px);
+}
+
+.pix-key-container {
+    border: 2px dashed var(--purple-primary);
+}
+
+.pix-key {
+    font-size: 0.9rem;
+    word-break: break-all;
+    color: var(--purple-primary);
+}
+
+.qr-code-placeholder {
+    border: 2px dashed #dee2e6;
+}
+
+.donation-stats {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.donation-stats i {
+    display: block;
+}
+
+@media (max-width: 767.98px) {
+    .pix-key {
+        font-size: 0.75rem;
+    }
+
+    .donation-stats .col-4 {
+        margin-bottom: 15px;
     }
 }
